@@ -1,13 +1,11 @@
-# Great India Hindi Video Creator — FULL FIXED
+# Great India Hindi Video Creator — Tested Voice Recording Fix
 
-Features:
-- Enter Website URL
-- Website preview inside the creator
-- Open Website in new tab fallback
-- Screen/tab/window recording with browser permission
-- Microphone voice automatically mixed into the video
-- Separate voice recording + voice download
-- Add an existing audio voice file; it is mixed while recording
-- Video preview + direct download
+Added **Start Recording with Tested Voice**.
 
-Important: GitHub Pages alone cannot safely inspect/control arbitrary cross-origin websites or automatically perform admin clicks. The recording mode captures the website exactly as the user sees it after permission. For fully automatic AI navigation, a backend/Playwright service is required.
+- Uses the Hindi Voice Test text.
+- Starts screen/tab recording after permission.
+- Does not request microphone for this mode.
+- For no outside sound, select **This Tab** and enable **Share tab audio**.
+- Output is WebM in the browser.
+
+Note: browser speechSynthesis audio capture depends on the browser. If the tested speech is not captured in tab audio, use the normal recorded/uploaded voice option or a fixed TTS audio provider.
