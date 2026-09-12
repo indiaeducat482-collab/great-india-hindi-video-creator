@@ -3,22 +3,31 @@ on:
   workflow_dispatch:
     inputs:
       job_json:
-        description: Paste video-job.json content
+        description: Paste the full video-job.json content
         required: true
         type: string
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.11'}
+        with:
+          python-version: '3.11'
       - name: Install FFmpeg
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
-      - name: Save job
-        env: {JOB_JSON: ${{ inputs.job_json }}}
+      - name: Save job JSON
+        env:
+          JOB_JSON: ${{ inputs.job_json }}
         run: printf '%s' "$JOB_JSON" > job.json
-      - name: Render MP4
+      - name: Build MP4
         run: python tools/render_video.py job.json
-      - uses: actions/upload-artifact@v4
-        with: {name: hindi-video, path: output/*.mp4}
+      - name: Publish MP4 as GitHub Release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: video-${{ github.run_number }}
+          name: Hindi Video ${{ github.run_number }}
+          files: output/hindi-tutorial.mp4
+          generate_release_notes: false

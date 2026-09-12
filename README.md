@@ -1,9 +1,17 @@
 # Great India Hindi Video Creator
 
-Recommended repository name: `great-india-hindi-video-creator`
+Repository name: `great-india-hindi-video-creator`
 
-GitHub Pages: Settings → Pages → Deploy from branch → main → /(root)
+## GitHub Pages
+Settings → Pages → Deploy from branch → `main` → `/(root)`.
 
-V1 includes Hindi script, website URL, screenshot upload, short/full selection, Hindi browser voice test, video-job.json export, and GitHub Actions MP4 generation.
+## Video flow
+1. Enter title, website URL and Hindi script.
+2. Upload website screenshot/photo.
+3. Click Create Video and download `video-job.json`.
+4. GitHub → Actions → Build Hindi Video → Run workflow → paste the JSON.
+5. Workflow creates MP4 and publishes it automatically as a GitHub Release asset.
 
-For real AI website analysis + natural Hindi TTS, keep Gemini/TTS keys in GitHub Actions Secrets, never in index.html.
+The Release asset gives a real MP4 URL that can be used by a Download Video button.
+
+Important: this V1 renderer is a working MP4 pipeline foundation. Natural AI Hindi narration and automatic website understanding require Gemini/TTS APIs and should be connected server-side using GitHub Secrets, never in `index.html`.
