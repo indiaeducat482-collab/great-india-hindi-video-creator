@@ -1,0 +1,24 @@
+name: Build Hindi Video
+on:
+  workflow_dispatch:
+    inputs:
+      job_json:
+        description: Paste video-job.json content
+        required: true
+        type: string
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Save job
+        env: {JOB_JSON: ${{ inputs.job_json }}}
+        run: printf '%s' "$JOB_JSON" > job.json
+      - name: Render MP4
+        run: python tools/render_video.py job.json
+      - uses: actions/upload-artifact@v4
+        with: {name: hindi-video, path: output/*.mp4}
