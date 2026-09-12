@@ -1,9 +1,88 @@
-<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Great India Hindi Video Creator</title><style>*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f6fb;color:#172033}header{background:#111827;color:#fff;padding:24px;text-align:center}main{max-width:1000px;margin:22px auto;padding:0 15px}.card{background:#fff;padding:20px;border-radius:16px;margin:15px 0;box-shadow:0 4px 18px #0001}label{display:block;font-weight:700;margin:12px 0 6px}input,textarea,select{width:100%;padding:12px;border:1px solid #ccd3df;border-radius:9px;font-size:15px}textarea{min-height:170px}button{padding:12px 18px;border:0;border-radius:9px;cursor:pointer;font-weight:700;margin:7px 5px 0 0}.primary{background:#111827;color:#fff}.muted{background:#e5e7eb}.download{display:none;text-decoration:none}.download button{display:inline-block}#status,#downloadInfo{padding:12px;background:#f3f4f6;border-radius:9px;line-height:1.6}.ok{background:#dcfce7!important;color:#166534}.err{background:#fee2e2!important;color:#991b1b!important}.hint{font-size:13px;color:#64748b}#canvas{width:100%;background:#111827;border-radius:12px}</style></head><body><header><h1>🎬 Great India Hindi Video Creator</h1><p>Personal Use • AI Hindi Website Tutorial</p></header><main><div class="card"><h2>1. Website Details</h2><label>Video Title</label><input id="title" value="Website Tutorial"><label>Website URL</label><input id="url" placeholder="https://example.com"><label>Website Photo / Screenshot</label><input id="photo" type="file" accept="image/*"><p class="hint">Photo preview के लिए है। GitHub Action वेबसाइट URL से fresh screenshots लेकर AI video बनाएगा।</p><label>Video Type</label><select id="type"><option value="short">Short Video</option><option value="full">Full Tutorial</option></select></div><div class="card"><h2>2. Hindi Script / निर्देश</h2><textarea id="script" placeholder="पहले Account Register करें, फिर Login करें...">पहले Account Register करें, फिर Login करें। फिर Business Profile बनाएं। इसके बाद Service Add करें। अंत में Public Link Generate होगा।</textarea><button class="muted" onclick="voice()">🔊 Hindi Voice Test</button><button class="muted" onclick="speechSynthesis.cancel()">⏹ Stop</button></div><div class="card"><h2>3. Create Video</h2><button class="primary" onclick="createJob()">🎬 Create Video</button><div id="status">Ready.</div><p class="hint">Create Video एक job JSON बनाएगा। फिर GitHub → Actions → Build Hindi AI Video → Run workflow में JSON paste करें।</p></div><div class="card"><h2>4. Video Download</h2><p id="downloadInfo">Build पूरा होने के बाद Check Video Again दबाएँ।</p><button class="muted" id="checkBtn" onclick="checkVideo()">🔄 Check Video Again</button><a id="downloadLink" class="download" download="hindi-website-tutorial.mp4" target="_blank" rel="noopener"><button class="primary">⬇️ Download Video</button></a></div><div class="card"><h2>Preview</h2><canvas id="canvas" width="1280" height="720"></canvas></div></main><script>
-const REPO='indiaeducat482-collab/great-india-hindi-video-creator';let img=null;const $=id=>document.getElementById(id);
-$('photo').onchange=()=>{const f=$('photo').files[0];if(!f)return;const r=new FileReader();r.onload=e=>{img=new Image();img.onload=draw;img.src=e.target.result};r.readAsDataURL(f)};
-function draw(){const c=$('canvas'),x=c.getContext('2d');x.fillStyle='#111827';x.fillRect(0,0,c.width,c.height);x.fillStyle='#fff';x.font='bold 42px Arial';x.fillText($('title').value||'Website Tutorial',55,65);x.font='23px Arial';x.fillStyle='#cbd5e1';x.fillText(($('url').value||'Website URL').slice(0,85),55,108);if(img){const s=Math.min(1120/img.width,500/img.height),w=img.width*s,h=img.height*s;x.drawImage(img,80,145,w,h)}else{x.strokeStyle='#64748b';x.strokeRect(80,145,1120,500);x.fillStyle='#94a3b8';x.font='28px Arial';x.fillText('Upload website screenshot / photo',390,400)}}
-function voice(){const t=$('script').value.trim();if(!t)return alert('पहले Hindi script लिखें।');speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='hi-IN';u.rate=.9;speechSynthesis.speak(u)}
-function createJob(){const s=$('script').value.trim();if(!s)return alert('Hindi script लिखें।');const u=$('url').value.trim();if(!/^https?:\/\//i.test(u))return alert('Website URL http:// या https:// से शुरू करें।');const d={title:$('title').value.trim()||'Website Tutorial',url:u,script:s,type:$('type').value,createdAt:new Date().toISOString()};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:'application/json'}));a.download='video-job.json';a.click();$('status').innerHTML='✅ video-job.json तैयार है। अब GitHub Actions में Build Hindi AI Video workflow चलाएँ।';draw()}
-async function checkVideo(){const b=$('checkBtn'),info=$('downloadInfo'),link=$('downloadLink');b.disabled=true;b.textContent='⏳ Checking...';link.style.display='none';info.className='';info.textContent='Latest GitHub Release check किया जा रहा है...';try{const r=await fetch('https://api.github.com/repos/'+REPO+'/releases?per_page=20',{headers:{Accept:'application/vnd.github+json'}});if(!r.ok)throw new Error('GitHub API '+r.status);const releases=await r.json();let found=null;for(const rel of releases){if(rel.draft||rel.prerelease)continue;const a=(rel.assets||[]).find(a=>/\.mp4$/i.test(a.name));if(a){found={asset:a,release:rel};break}}if(!found){info.textContent='⏳ अभी MP4 Release में नहीं मिला। Actions में build complete होने दें, फिर दोबारा Check Video दबाएँ।';return}link.href=found.asset.browser_download_url;link.style.display='inline-block';info.className='ok';info.innerHTML='✅ Video तैयार है! <b>'+found.asset.name+'</b><br>Release: '+found.release.name;}catch(e){info.className='err';info.textContent='❌ Check failed: '+e.message+' — Repository public रखें और GitHub Release बनने दें।'}finally{b.disabled=false;b.textContent='🔄 Check Video Again'}}
-draw();
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Great India Hindi Video Creator</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef2f7;color:#172033}header{background:#111827;color:#fff;padding:22px;text-align:center}main{max-width:1200px;margin:20px auto;padding:0 14px}.card{background:#fff;padding:18px;border-radius:16px;margin:14px 0;box-shadow:0 4px 18px #0001}label{display:block;font-weight:700;margin:10px 0 6px}input,textarea,select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font-size:15px}button{padding:11px 16px;border:0;border-radius:9px;cursor:pointer;font-weight:700;margin:7px 5px 0 0}.primary{background:#111827;color:#fff}.green{background:#15803d;color:#fff}.red{background:#b91c1c;color:#fff}.muted{background:#e5e7eb}.download{display:none;text-decoration:none}.grid{display:grid;grid-template-columns:1fr 1.25fr;gap:16px}.browser{background:#111827;padding:8px;border-radius:12px}.browserbar{background:#e5e7eb;padding:8px;border-radius:8px 8px 0 0;display:flex;gap:6px}.dot{width:10px;height:10px;border-radius:50%;background:#94a3b8}.urlbar{flex:1;background:#fff;border-radius:5px;padding:5px 9px;font-size:12px;overflow:hidden;white-space:nowrap}.browser iframe{width:100%;height:600px;border:0;background:#fff;border-radius:0 0 8px 8px}.status{padding:12px;background:#f1f5f9;border-radius:9px;line-height:1.5}.ok{background:#dcfce7!important;color:#166534}.err{background:#fee2e2!important;color:#991b1b}.hint{font-size:13px;color:#64748b}.rec{font-size:18px;font-weight:800}.pill{display:inline-block;padding:5px 9px;border-radius:20px;background:#fee2e2;color:#991b1b;margin-left:5px}.preview{width:100%;max-height:360px;background:#0f172a;border-radius:10px}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:850px){.grid,.two{grid-template-columns:1fr}.browser iframe{height:500px}}
+</style></head>
+<body>
+<header><h1>🎬 Great India Hindi Video Creator</h1><p>Website खोलें • Screen + Voice Record करें • Video Download करें</p></header>
+<main>
+<div class="card">
+<h2>1. Enter Website</h2>
+<label>Website URL</label>
+<div class="two"><input id="siteUrl" placeholder="https://example.com"><button class="primary" onclick="openSite()">🌐 Enter Website</button></div>
+<p class="hint">Website नीचे खुलेगी। अगर कोई site iframe में खुलने से मना करे, तो “Open in New Tab” इस्तेमाल करें।</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<h2>2. Voice</h2>
+<label>Voice Recording</label>
+<button class="green" onclick="startVoiceOnly()">🎙️ Record Voice</button>
+<button class="red" onclick="stopVoiceOnly()">⏹ Stop Voice</button>
+<a id="voiceDownload" class="download" download="recorded-voice.webm"><button class="muted">⬇️ Download Voice</button></a>
+<label>Add Voice File</label><input id="voiceFile" type="file" accept="audio/*">
+<p class="hint">Recorded voice automatically video recording में mix होगी। Voice file चुनने पर वही voice video के दौरान play/mix होगी।</p>
+<div id="voiceStatus" class="status">Voice ready.</div>
+</div>
+<div class="card">
+<h2>3. Video Settings</h2>
+<label>Video Title</label><input id="title" value="Website Tutorial">
+<label>Step-by-step Notes</label><textarea id="notes" placeholder="Step 1: Register... Step 2: Login... Step 3: Business Profile...">पहले website खोलें। फिर Admin Login करें और dashboard में जाकर सभी जरूरी steps दिखाएँ।</textarea>
+</div>
+</div>
+
+<div class="card">
+<h2>4. Website Recording</h2>
+<div class="browser"><div class="browserbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div id="barUrl" class="urlbar">Enter website URL ऊपर</div></div><iframe id="siteFrame" title="Website Preview"></iframe></div>
+<button class="muted" onclick="openNewTab()">↗️ Open in New Tab</button>
+<button class="green" onclick="startRecording()">🔴 Open Recording & Start</button>
+<button class="red" onclick="stopRecording()">⏹ Stop Recording</button>
+<span id="timer" class="rec"></span>
+<div id="status" class="status">पहले website enter करें, फिर Open Recording & Start दबाएँ।</div>
+</div>
+
+<div class="card">
+<h2>5. Video</h2>
+<video id="result" class="preview" controls></video>
+<br><a id="videoDownload" class="download" download="great-india-hindi-tutorial.webm"><button class="primary">⬇️ Download Video</button></a>
+<p class="hint">यह browser recording है। Chrome/Edge में screen/tab/window चुनकर permission दें। Screen Capture API user permission मांगता है और MediaRecorder selected stream को record करता है. citeturn0search0turn0search6</p>
+</div>
+</main>
+<script>
+let mediaRecorder=null,chunks=[],recordStream=null,voiceRecorder=null,voiceChunks=[],timerInt=null,startTime=0,voiceUrl=null;
+const $=id=>document.getElementById(id);
+function validUrl(){let u=$('siteUrl').value.trim();if(!/^https?:\\/\\//i.test(u)){alert('Website URL https:// या http:// से शुरू करें।');return null}return u}
+function openSite(){const u=validUrl();if(!u)return;$('siteFrame').src=u;$('barUrl').textContent=u;$('status').textContent='Website load हो रही है...';setTimeout(()=>{$('status').textContent='Website खुल गई। अब Open Recording & Start दबाएँ।'},1200)}
+function openNewTab(){const u=validUrl();if(u)window.open(u,'_blank','noopener')}
+async function makeAudioMixer(){const ac=new AudioContext();const dest=ac.createMediaStreamDestination();
+  const mic=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
+  const micSrc=ac.createMediaStreamSource(mic);micSrc.connect(dest);
+  const vf=$('voiceFile').files[0];
+  let audioEl=null;
+  if(vf){audioEl=new Audio();audioEl.src=URL.createObjectURL(vf);audioEl.crossOrigin='anonymous';await audioEl.play().catch(()=>{});const src=ac.createMediaElementSource(audioEl);src.connect(dest);audioEl.onended=()=>{};}
+  return {ac,dest,mic,audioEl};
+}
+async function startRecording(){
+  if(!validUrl())return;
+  if(!navigator.mediaDevices?.getDisplayMedia){alert('इस browser में screen recording supported नहीं है। Chrome/Edge का latest version इस्तेमाल करें।');return}
+  try{
+    $('status').textContent='Permission window खुल रही है... Browser में Tab/Window/Screen चुनें और Share/Allow करें।';
+    const display=await navigator.mediaDevices.getDisplayMedia({video:{frameRate:30},audio:true,preferCurrentTab:true,selfBrowserSurface:'exclude',systemAudio:'include'});
+    const mix=await makeAudioMixer();
+    const tracks=[...display.getVideoTracks(),...mix.dest.stream.getAudioTracks()];
+    recordStream=new MediaStream(tracks);chunks=[];
+    const mime=['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'].find(x=>MediaRecorder.isTypeSupported(x));
+    mediaRecorder=new MediaRecorder(recordStream,mime?{mimeType:mime}:{ });
+    mediaRecorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+    mediaRecorder.onstop=()=>{const blob=new Blob(chunks,{type:mediaRecorder.mimeType||'video/webm'});const url=URL.createObjectURL(blob);$('result').src=url;$('videoDownload').href=url;$('videoDownload').style.display='inline-block';$('status').className='status ok';$('status').textContent='✅ Video तैयार है। Download Video दबाएँ।';if(recordStream)recordStream.getTracks().forEach(t=>t.stop());if(mix.mic)mix.mic.getTracks().forEach(t=>t.stop());if(mix.ac)mix.ac.close();if(mix.audioEl)mix.audioEl.pause();clearInterval(timerInt)};
+    display.getVideoTracks()[0].onended=()=>stopRecording();
+    mediaRecorder.start(1000);startTime=Date.now();$('status').className='status ok';$('status').textContent='🔴 Recording चालू है। Website पर step-by-step काम करें।';timerInt=setInterval(()=>{let s=Math.floor((Date.now()-startTime)/1000);$('timer').textContent=' ⏱ '+Math.floor(s/60)+':'+String(s%60).padStart(2,'0')},500);
+  }catch(e){$('status').className='status err';$('status').textContent='❌ Recording शुरू नहीं हुई: '+e.message}
+}
+function stopRecording(){if(mediaRecorder&&mediaRecorder.state!=='inactive'){mediaRecorder.stop();$('status').textContent='⏳ Video तैयार किया जा रहा है...';$('timer').textContent=''}}
+async function startVoiceOnly(){try{const s=await navigator.mediaDevices.getUserMedia({audio:true});voiceChunks=[];voiceRecorder=new MediaRecorder(s);voiceRecorder.ondataavailable=e=>e.data.size&&voiceChunks.push(e.data);voiceRecorder.onstop=()=>{const b=new Blob(voiceChunks,{type:voiceRecorder.mimeType||'audio/webm'});const u=URL.createObjectURL(b);$('voiceDownload').href=u;$('voiceDownload').style.display='inline-block';$('voiceStatus').className='status ok';$('voiceStatus').textContent='✅ Voice recorded. इसे download करके भी रख सकते हैं।s';s.getTracks().forEach(t=>t.stop())};voiceRecorder.start();$('voiceStatus').textContent='🎙️ Voice recording चालू है...';}catch(e){$('voiceStatus').className='status err';$('voiceStatus').textContent='❌ Mic permission: '+e.message}}
+function stopVoiceOnly(){if(voiceRecorder&&voiceRecorder.state!=='inactive')voiceRecorder.stop()}
 </script></body></html>
