@@ -1,9 +1,9 @@
-name: Build Hindi Video
+name: Build Hindi AI Video
 on:
   workflow_dispatch:
     inputs:
       job_json:
-        description: Paste the full video-job.json content
+        description: Paste the complete video-job.json content
         required: true
         type: string
 jobs:
@@ -12,22 +12,40 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install FFmpeg
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-core fonts-noto-cjk
+      - name: Install Python packages
+        run: pip install requests playwright
+      - name: Install Chromium
+        run: python -m playwright install --with-deps chromium
       - name: Save job JSON
         env:
           JOB_JSON: ${{ inputs.job_json }}
         run: printf '%s' "$JOB_JSON" > job.json
-      - name: Build MP4
-        run: python tools/render_video.py job.json
+      - name: Validate secrets
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+        run: |
+          test -n "$GEMINI_API_KEY" || (echo 'Missing GEMINI_API_KEY repository secret' && exit 1)
+          test -n "$GOOGLE_TTS_API_KEY" || (echo 'Missing GOOGLE_TTS_API_KEY repository secret' && exit 1)
+      - name: Build AI Hindi video
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+        run: python tools/render_ai_video.py job.json
       - name: Publish MP4 as GitHub Release asset
         uses: softprops/action-gh-release@v2
         with:
           tag_name: video-${{ github.run_number }}
-          name: Hindi Video ${{ github.run_number }}
-          files: output/hindi-tutorial.mp4
+          name: Hindi AI Video ${{ github.run_number }}
+          files: output/hindi-ai-tutorial.mp4
           generate_release_notes: false
