@@ -18,3 +18,7 @@ Note: browser speechSynthesis audio capture depends on the browser. If the teste
 - Stop & Finish finalizes one WebM recording.
 - Tested voice speed is set to 0.75x.
 - This is a browser-only implementation; exact speechSynthesis audio capture still depends on the browser and tab-audio permission.
+
+
+### Automatic Animation Video Download
+The Automatic Voice Animation section now records the animated scenes in the browser using Canvas + MediaRecorder. After Stop & Create Video, a Download Video button appears. The exported browser video is WebM format; Chrome/Edge are recommended.
