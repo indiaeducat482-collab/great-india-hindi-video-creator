@@ -1,9 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Great India Hindi Video Creator</title>
 
 <style>
@@ -14,20 +13,19 @@
 body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
-  background:#eef2f7;
+  background:#f4f7fb;
   color:#172033;
 }
 
 header{
-  background:#111827;
-  color:white;
-  padding:25px 15px;
-  text-align:center;
+  background:linear-gradient(135deg,#173b8f,#2563eb);
+  color:#fff;
+  padding:22px 16px;
 }
 
 header h1{
-  margin:0 0 8px;
-  font-size:28px;
+  margin:0 0 6px;
+  font-size:25px;
 }
 
 header p{
@@ -36,59 +34,76 @@ header p{
 }
 
 main{
-  max-width:1200px;
+  max-width:1100px;
   margin:20px auto;
   padding:0 14px;
 }
 
 .card{
-  background:white;
-  padding:20px;
+  background:#fff;
   border-radius:16px;
-  margin-bottom:18px;
-  box-shadow:0 4px 18px rgba(0,0,0,.08);
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 5px 20px #00000012;
 }
 
 h2{
-  margin-top:0;
+  font-size:18px;
+  margin:0 0 14px;
 }
 
 label{
   display:block;
-  font-weight:bold;
-  margin:12px 0 6px;
+  font-weight:700;
+  margin:10px 0 6px;
 }
 
 input,
 textarea,
 select{
   width:100%;
-  padding:12px;
-  border:1px solid #cbd5e1;
-  border-radius:9px;
+  padding:11px 12px;
+  border:1px solid #ccd5e3;
+  border-radius:10px;
   font-size:15px;
-  outline:none;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-  border-color:#2563eb;
 }
 
 textarea{
-  min-height:150px;
+  min-height:140px;
   resize:vertical;
+}
+
+.row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:10px;
 }
 
 button{
   border:0;
-  padding:11px 16px;
-  border-radius:9px;
+  border-radius:10px;
+  padding:11px 15px;
+  background:#2563eb;
+  color:#fff;
+  font-weight:700;
   cursor:pointer;
-  font-weight:bold;
-  margin:7px 5px 0 0;
-  font-size:14px;
+}
+
+button.secondary{
+  background:#475569;
+}
+
+button.success{
+  background:#15803d;
+}
+
+button.warn{
+  background:#b45309;
+}
+
+button.danger{
+  background:#dc2626;
 }
 
 button:disabled{
@@ -96,198 +111,82 @@ button:disabled{
   cursor:not-allowed;
 }
 
-.primary{
-  background:#111827;
-  color:white;
-}
-
-.green{
-  background:#15803d;
-  color:white;
-}
-
-.red{
-  background:#b91c1c;
-  color:white;
-}
-
-.blue{
-  background:#2563eb;
-  color:white;
-}
-
-.orange{
-  background:#ea580c;
-  color:white;
-}
-
-.gray{
-  background:#e5e7eb;
-  color:#111827;
-}
-
-.download{
-  display:none;
-  text-decoration:none;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-.two{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:10px;
-}
-
-.three{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:10px;
-}
-
 .status{
-  padding:13px;
-  margin-top:12px;
-  border-radius:9px;
-  background:#f1f5f9;
-  line-height:1.5;
-}
-
-.status.ok{
-  background:#dcfce7;
-  color:#166534;
-}
-
-.status.err{
-  background:#fee2e2;
-  color:#991b1b;
-}
-
-.status.warn{
-  background:#fff7ed;
-  color:#9a3412;
-}
-
-.hint{
-  color:#64748b;
-  font-size:13px;
-  line-height:1.5;
-}
-
-.badge{
-  display:inline-block;
-  padding:5px 10px;
-  background:#e0e7ff;
-  color:#3730a3;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.browser{
-  background:#111827;
-  padding:8px;
-  border-radius:12px;
-}
-
-.browserbar{
-  background:#e5e7eb;
-  padding:8px;
-  border-radius:8px 8px 0 0;
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-.dot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:#94a3b8;
-}
-
-.urlbar{
-  flex:1;
-  background:white;
-  border-radius:5px;
-  padding:6px 9px;
-  font-size:12px;
-  overflow:hidden;
-  white-space:nowrap;
-}
-
-iframe{
-  display:block;
-  width:100%;
-  height:580px;
-  border:0;
-  background:white;
-  border-radius:0 0 8px 8px;
-}
-
-.preview{
-  width:100%;
-  max-height:520px;
-  margin-top:15px;
-  background:#0f172a;
+  padding:10px 12px;
+  background:#eef4ff;
   border-radius:10px;
-}
-
-.timer{
-  display:inline-block;
-  font-size:18px;
-  font-weight:bold;
-  margin-left:10px;
-}
-
-.note{
-  padding:13px;
-  background:#fff7ed;
-  color:#9a3412;
-  border-radius:9px;
-  margin-top:12px;
+  margin-top:10px;
+  white-space:pre-wrap;
   line-height:1.5;
 }
 
-.log{
+.small{
+  font-size:13px;
+  color:#64748b;
+  line-height:1.6;
+}
+
+#preview{
+  width:100%;
+  height:480px;
+  border:1px solid #ccd5e3;
+  border-radius:12px;
+  background:#f8fafc;
+}
+
+video{
+  max-width:100%;
+  width:100%;
+  border-radius:12px;
+  background:#000;
+  margin-top:10px;
+}
+
+audio{
+  width:100%;
+}
+
+#log{
   background:#0f172a;
   color:#dbeafe;
   padding:12px;
-  border-radius:9px;
-  min-height:100px;
-  max-height:220px;
-  overflow:auto;
-  font-family:monospace;
-  font-size:12px;
+  border-radius:10px;
+  min-height:90px;
   white-space:pre-wrap;
+  font:13px monospace;
 }
 
-.hidden{
-  display:none!important;
+.speed-box{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  padding:12px;
+  border-radius:12px;
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
 }
 
-@media(max-width:850px){
+.speed-value{
+  font-size:18px;
+  font-weight:800;
+  color:#2563eb;
+}
 
-  .grid,
-  .three{
-    grid-template-columns:1fr;
-  }
+@media(max-width:700px){
 
-  .two{
-    grid-template-columns:1fr;
-  }
-
-  iframe{
-    height:500px;
+  #preview{
+    height:360px;
   }
 
   header h1{
-    font-size:23px;
+    font-size:21px;
   }
+
+  button{
+    width:100%;
+  }
+
 }
 </style>
 </head>
@@ -295,372 +194,321 @@ iframe{
 <body>
 
 <header>
-  <h1>🎬 Great India Hindi Video Creator</h1>
-  <p>Website खोलें • Hindi Voice Test करें • Screen Record करें • Video Download करें</p>
+  <h1>🇮🇳 Great India Hindi Video Creator</h1>
+  <p>Hindi Tutorial Voice + Website / Screen Recording</p>
 </header>
 
 <main>
 
 <!-- WEBSITE -->
-<div class="card">
+<section class="card">
 
-  <h2>1. Enter Website</h2>
+<h2>1. Enter Website</h2>
 
-  <label>Website URL</label>
+<label>Website URL</label>
 
-  <div class="two">
-    <input
-      id="siteUrl"
-      type="url"
-      placeholder="https://example.com"
-      autocomplete="url"
-    >
+<input
+  id="websiteUrl"
+  type="url"
+  placeholder="https://example.com"
+>
 
-    <button
-      id="openBtn"
-      class="primary"
-      type="button"
-    >
-      🌐 Enter Website
-    </button>
-  </div>
+<label>Hindi Tutorial Script</label>
 
-  <p class="hint">
-    Website URL डालकर Enter Website दबाएँ।
-    अगर website iframe में open नहीं होती है तो Open in New Tab इस्तेमाल करें।
-  </p>
+<textarea
+  id="scriptText"
+  placeholder="यहाँ अपना हिंदी tutorial script लिखें..."
+></textarea>
 
-  <div id="siteStatus" class="status">
-    Website अभी open नहीं हुई है।
-  </div>
+<div class="row">
+
+<button id="enterWebsite">
+  Enter Website
+</button>
+
+<button id="openNewTab" class="secondary">
+  Open in New Tab
+</button>
+
+</div>
+
+<div id="urlStatus" class="status">
+Website अभी open नहीं है।
+</div>
+
+</section>
+
+
+<!-- VOICE -->
+<section class="card">
+
+<h2>2. Hindi Voice</h2>
+
+<p class="small">
+Hindi voice अब <b>0.75x</b> speed पर चलेगी।
+हर sentence के बाद natural pause दिया जाएगा ताकि voice जल्दी-जल्दी न बोले।
+</p>
+
+<div class="speed-box">
+
+<div>
+Voice Speed:
+<div class="speed-value">0.75x</div>
+</div>
+
+<div>
+Natural pauses:
+<div class="speed-value">ON</div>
+</div>
+
+</div>
+
+<div class="row">
+
+<button id="recordVoice">
+Record Voice
+</button>
+
+<button
+  id="stopVoice"
+  class="danger"
+  disabled
+>
+Stop Voice
+</button>
+
+<button
+  id="downloadVoice"
+  class="success"
+  disabled
+>
+Download Voice
+</button>
+
+<button
+  id="addVoiceFile"
+  class="secondary"
+>
+Add Voice File
+</button>
+
+<button
+  id="removeVoiceFile"
+  class="danger"
+>
+Remove Voice File
+</button>
+
+<input
+  id="voiceFile"
+  type="file"
+  accept="audio/*"
+  hidden
+>
 
 </div>
 
 
-<!-- VOICE + SETTINGS -->
-<div class="grid">
+<div class="row">
 
-  <div class="card">
+<button
+  id="testVoice"
+  class="warn"
+>
+Hindi Voice Test
+</button>
 
-    <h2>2. Voice</h2>
+<button
+  id="startTestedVoiceRecord"
+  class="success"
+>
+Start Recording with Tested Voice
+</button>
 
-    <span class="badge">
-      Normal Voice Recording
-    </span>
-
-    <label>अपनी Voice Record करें</label>
-
-    <button
-      id="voiceStart"
-      class="green"
-      type="button"
-    >
-      🎙️ Record Voice
-    </button>
-
-    <button
-      id="voiceStop"
-      class="red"
-      type="button"
-      disabled
-    >
-      ⏹ Stop Voice
-    </button>
-
-    <a
-      id="voiceDownload"
-      class="download"
-      download="great-india-voice.webm"
-    >
-      <button
-        class="gray"
-        type="button"
-      >
-        ⬇️ Download Voice
-      </button>
-    </a>
-
-    <label>Existing Voice File</label>
-
-    <input
-      id="voiceFile"
-      type="file"
-      accept="audio/*"
-    >
-
-    <button
-      id="voiceClear"
-      class="gray"
-      type="button"
-    >
-      ✖ Remove Voice File
-    </button>
-
-    <div
-      id="voiceStatus"
-      class="status"
-    >
-      Voice ready.
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <h2>3. Video Settings</h2>
-
-    <label>Video Title</label>
-
-    <input
-      id="title"
-      value="Website Tutorial"
-    >
-
-    <label>Hindi Script / Notes</label>
-
-    <textarea
-      id="notes"
-      placeholder="यहाँ Hindi script लिखें..."
-    >सबसे पहले Great India Technology की website खोलें। इसके बाद App और Project section में जाएँ। यहाँ से अपना required application open करें। अब registration करें और login करने के बाद dashboard में जाकर सभी जरूरी steps पूरा करें।</textarea>
-
-    <label>Video Quality</label>
-
-    <select id="quality">
-      <option value="30">HD • 30 FPS</option>
-      <option value="24">Standard • 24 FPS</option>
-    </select>
-
-    <br>
-
-    <button
-      id="testVoice"
-      class="blue"
-      type="button"
-    >
-      🔊 Hindi Voice Test
-    </button>
-
-    <button
-      id="startTestedVoiceRecord"
-      class="orange"
-      type="button"
-    >
-      🎙️ Start Recording with Tested Voice
-    </button>
-
-    <button
-      id="stopSpeech"
-      class="gray"
-      type="button"
-    >
-      ⏹ Stop Voice Test
-    </button>
-
-    <div
-      id="testVoiceStatus"
-      class="status"
-    >
-      पहले Hindi Voice Test दबाएँ।
-    </div>
-
-  </div>
+<button
+  id="stopTestedVoiceRecord"
+  class="danger"
+  disabled
+>
+Stop Voice Test Recording
+</button>
 
 </div>
 
+<div id="voiceStatus" class="status">
+Voice ready.
+</div>
 
-<!-- WEBSITE RECORDING -->
-<div class="card">
+<audio
+  id="voicePlayer"
+  controls
+  style="display:none;margin-top:10px"
+></audio>
 
-  <h2>4. Website Recording</h2>
-
-  <div class="browser">
-
-    <div class="browserbar">
-
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-
-      <div
-        id="barUrl"
-        class="urlbar"
-      >
-        Enter website URL ऊपर
-      </div>
-
-    </div>
-
-    <iframe
-      id="siteFrame"
-      title="Website Preview"
-      allow="fullscreen"
-    ></iframe>
-
-  </div>
+</section>
 
 
-  <div>
+<!-- SETTINGS -->
+<section class="card">
 
-    <button
-      id="newTab"
-      class="gray"
-      type="button"
-    >
-      ↗️ Open in New Tab
-    </button>
+<h2>3. Voice Settings</h2>
 
-    <button
-      id="startRecord"
-      class="green"
-      type="button"
-    >
-      🔴 Open Recording & Start
-    </button>
+<label>Voice Speed</label>
 
-    <button
-      id="stopRecord"
-      class="red"
-      type="button"
-      disabled
-    >
-      ⏹ Stop Recording
-    </button>
+<select id="voiceSpeed">
 
-    <button
-      id="cancelRecord"
-      class="gray"
-      type="button"
-      disabled
-    >
-      ✖ Cancel
-    </button>
+<option value="0.75" selected>
+0.75x — Slow & Clear
+</option>
 
-    <span
-      id="timer"
-      class="timer"
-    >
-      00:00
-    </span>
+<option value="0.70">
+0.70x — Very Slow
+</option>
 
-  </div>
+<option value="0.80">
+0.80x — Slightly Slow
+</option>
 
+</select>
 
-  <div
-    id="recordStatus"
-    class="status"
-  >
-    पहले website enter करें।
-  </div>
+<label>Natural Pause</label>
+
+<select id="pauseMode">
+
+<option value="natural" selected>
+Natural pauses
+</option>
+
+<option value="short">
+Short pauses
+</option>
+
+<option value="long">
+Long pauses
+</option>
+
+</select>
+
+<p class="small">
+Recommended: <b>0.75x + Natural pauses</b>
+</p>
+
+</section>
 
 
-  <div class="note">
+<!-- RECORDING -->
+<section class="card">
 
-    <b>🎙️ Tested Voice Mode:</b>
+<h2>4. Website Recording</h2>
 
-    Start Recording with Tested Voice दबाने पर Chrome का
-    screen/tab selection खुलेगा।
+<iframe
+  id="preview"
+  title="Website Preview"
+></iframe>
 
-    <br><br>
+<div class="row">
 
-    <b>This Tab</b> चुनें और
+<button
+  id="openRecording"
+  class="success"
+>
+Open Recording & Start
+</button>
 
-    <b>Share tab audio</b>
+<button
+  id="stopRecording"
+  class="danger"
+  disabled
+>
+Stop Recording
+</button>
 
-    ON करें।
-
-    <br><br>
-
-    इस mode में microphone request नहीं की जाती,
-    इसलिए बाहर की आवाज record नहीं होगी।
-
-  </div>
-
-
-  <div class="note">
-
-    <b>⚠️ Important:</b>
-
-    कुछ browsers में speechSynthesis की computer voice को
-    MediaRecorder में tab audio के रूप में capture नहीं किया जाता।
-    ऐसी स्थिति में recording video बनेगा लेकिन voice audio नहीं आएगा।
-    Exact Hindi AI voice के लिए अलग TTS audio generation जरूरी होगा।
-
-  </div>
+<button
+  id="cancelRecording"
+  class="secondary"
+  disabled
+>
+Cancel
+</button>
 
 </div>
+
+<p class="small">
+
+Recording करते समय browser के Share dialog में
+<b>This Tab</b> select करें।
+
+यदि option दिखाई दे तो
+<b>Share tab audio</b>
+भी enable करें।
+
+Tested Voice recording में microphone request नहीं किया जाता,
+इसलिए microphone/environment sound intentionally capture नहीं किया जाता।
+
+</p>
+
+<div id="recordStatus" class="status">
+Recording शुरू नहीं हुई है।
+</div>
+
+<video
+  id="recordedVideo"
+  controls
+  style="display:none"
+></video>
+
+</section>
 
 
 <!-- VIDEO -->
-<div class="card">
+<section class="card">
 
-  <h2>5. Create Video</h2>
+<h2>5. Create Video</h2>
 
-  <div class="three">
+<div class="row">
 
-    <button
-      id="createVideo"
-      class="primary"
-      type="button"
-    >
-      🎬 Create Video
-    </button>
+<button
+  id="createVideo"
+  class="success"
+>
+Create Video
+</button>
 
-    <button
-      id="playVideo"
-      class="blue"
-      type="button"
-    >
-      ▶️ Play Video
-    </button>
+<button
+  id="playVideo"
+  class="secondary"
+  disabled
+>
+Play Video
+</button>
 
-    <a
-      id="videoDownload"
-      class="download"
-      download="great-india-hindi-tutorial.webm"
-    >
-      <button
-        class="green"
-        type="button"
-      >
-        ⬇️ Download Video
-      </button>
-    </a>
-
-  </div>
-
-
-  <video
-    id="result"
-    class="preview"
-    controls
-    playsinline
-  ></video>
-
-
-  <div
-    id="videoStatus"
-    class="status"
-  >
-    Recording के बाद Create Video दबाएँ।
-  </div>
+<button
+  id="downloadVideo"
+  class="success"
+  disabled
+>
+Download Video
+</button>
 
 </div>
 
+<div id="videoStatus" class="status">
+पहले recording बनाएं।
+</div>
 
-<!-- ACTIVITY -->
-<div class="card">
+</section>
 
-  <h2>6. Activity</h2>
 
-  <div
-    id="log"
-    class="log"
-  >
+<!-- LOG -->
+<section class="card">
+
+<h2>6. Activity</h2>
+
+<div id="log">
 Ready.
-  </div>
-
 </div>
+
+</section>
 
 </main>
 
@@ -674,21 +522,39 @@ Ready.
    GLOBAL VARIABLES
 ========================================================= */
 
-const $ = (id) => document.getElementById(id);
+const $ = id => document.getElementById(id);
 
-let mediaRecorder = null;
-let recordStream = null;
-let chunks = [];
 
+/*
+  MAIN FIX:
+
+  Hindi voice default speed = 0.75x
+*/
+const DEFAULT_SPEED = 0.75;
+
+
+let currentUrl = "";
+
+
+/* Voice recording */
 let voiceRecorder = null;
-let voiceStream = null;
 let voiceChunks = [];
+let recordedVoiceBlob = null;
+let uploadedVoiceBlob = null;
+let voiceObjectUrl = null;
 
-let lastVideoBlob = null;
-let lastVoiceBlob = null;
 
-let timerInterval = null;
-let recordingStartTime = 0;
+/* Screen recording */
+let mediaRecorder = null;
+let screenStream = null;
+let recordedChunks = [];
+let recordedVideoBlob = null;
+let recordedVideoUrl = null;
+
+
+/* Tested voice */
+let testedVoiceActive = false;
+let testedVoiceUtterance = null;
 
 
 /* =========================================================
@@ -697,13 +563,15 @@ let recordingStartTime = 0;
 
 function log(message){
 
-  const time = new Date().toLocaleTimeString();
+  const now =
+    new Date().toLocaleTimeString();
 
   $("log").textContent =
-    "[" + time + "] " +
+    "[" + now + "] " +
     message +
     "\n" +
     $("log").textContent;
+
 }
 
 
@@ -711,17 +579,14 @@ function log(message){
    STATUS
 ========================================================= */
 
-function status(id,message,type=""){
+function setStatus(id,message){
 
-  const el = $(id);
+  const element = $(id);
 
-  el.className = "status";
-
-  if(type){
-    el.classList.add(type);
+  if(element){
+    element.textContent = message;
   }
 
-  el.textContent = message;
 }
 
 
@@ -729,691 +594,1032 @@ function status(id,message,type=""){
    URL VALIDATION
 ========================================================= */
 
-function getWebsiteUrl(){
+function validUrl(value){
 
-  const value = $("siteUrl").value.trim();
+  const url =
+    String(value || "").trim();
 
-  if(!value){
+  return /^https?:\/\//i.test(url);
 
-    status(
-      "siteStatus",
-      "❌ पहले website URL डालें।",
-      "err"
+}
+
+
+/* =========================================================
+   SPEED
+========================================================= */
+
+function getSpeed(){
+
+  /*
+    Always default to 0.75x.
+  */
+
+  const value =
+    parseFloat(
+      $("voiceSpeed").value
     );
 
-    return null;
+  if(!Number.isFinite(value)){
+    return DEFAULT_SPEED;
+  }
+
+  return value;
+
+}
+
+
+/* =========================================================
+   NATURAL PAUSE
+========================================================= */
+
+function pauseMs(){
+
+  const mode =
+    $("pauseMode").value;
+
+  if(mode === "short"){
+    return 300;
+  }
+
+  if(mode === "long"){
+    return 700;
+  }
+
+  /*
+    Natural default
+  */
+
+  return 480;
+
+}
+
+
+/* =========================================================
+   SPEECH TEXT PREPARATION
+========================================================= */
+
+function prepareSpeechText(text){
+
+  return String(text || "")
+    .replace(/\r/g,"")
+
+    /*
+      Full stop / question / exclamation
+    */
+    .replace(
+      /[।!?！？]+/g,
+      match => match + " "
+    )
+
+    /*
+      Comma / colon / semicolon
+    */
+    .replace(
+      /[,;:]+/g,
+      match => match + " "
+    )
+
+    /*
+      New lines become a natural pause
+    */
+    .replace(
+      /\n+/g,
+      " … "
+    )
+
+    .trim();
+
+}
+
+
+/* =========================================================
+   SPLIT LONG SPEECH
+========================================================= */
+
+function splitSpeech(text){
+
+  const prepared =
+    prepareSpeechText(text);
+
+  if(!prepared){
+    return [];
   }
 
 
   /*
-    IMPORTANT:
-    Correct regex.
+    Split at Hindi/English sentence endings.
   */
 
-  if(!/^https?:\/\//i.test(value)){
-
-    status(
-      "siteStatus",
-      "❌ URL http:// या https:// से शुरू होना चाहिए।",
-      "err"
-    );
-
-    return null;
-  }
+  const sentences =
+    prepared.match(
+      /[^।!?！？]+[।!?！？]?/g
+    ) || [prepared];
 
 
-  try{
-
-    const url = new URL(value);
-
-    return url.href;
-
-  }catch(error){
-
-    status(
-      "siteStatus",
-      "❌ Website URL सही नहीं है।",
-      "err"
-    );
-
-    return null;
-  }
-}
+  const result = [];
 
 
-/* =========================================================
-   OPEN WEBSITE
-========================================================= */
+  for(
+    const sentence of sentences
+  ){
 
-function openWebsite(){
+    let s =
+      sentence.trim();
 
-  const url = getWebsiteUrl();
-
-  if(!url){
-    return;
-  }
-
-  $("barUrl").textContent = url;
-
-  status(
-    "siteStatus",
-    "⏳ Website load हो रही है...",
-    ""
-  );
-
-  log("Website opening: " + url);
-
-  const frame = $("siteFrame");
-
-  frame.src = "about:blank";
-
-  setTimeout(function(){
-
-    frame.src = url;
-
-  },100);
-
-}
-
-
-$("openBtn").addEventListener(
-  "click",
-  openWebsite
-);
-
-
-/* =========================================================
-   NEW TAB
-========================================================= */
-
-$("newTab").addEventListener(
-  "click",
-  function(){
-
-    const url = getWebsiteUrl();
-
-    if(!url){
-      return;
+    if(!s){
+      continue;
     }
 
-    const win = window.open(
-      url,
-      "_blank"
-    );
 
-    if(!win){
+    /*
+      Short sentence
+    */
 
-      status(
-        "siteStatus",
-        "⚠️ Popup blocked है। Browser में popup allow करें।",
-        "warn"
+    if(s.length <= 180){
+
+      result.push(s);
+
+      continue;
+
+    }
+
+
+    /*
+      Long sentence
+      */
+
+    const parts =
+      s.split(
+        /(?<=[,;:])\s+/
       );
 
-      log("Popup blocked.");
 
-      return;
-    }
-
-    log("Website new tab में खोली गई।");
-
-  }
-);
+    let buffer = "";
 
 
-/* =========================================================
-   FRAME LOAD
-========================================================= */
+    for(
+      const part of parts
+    ){
 
-$("siteFrame").addEventListener(
-  "load",
-  function(){
+      if(
+        (
+          buffer +
+          " " +
+          part
+        ).trim().length > 180
+        &&
+        buffer
+      ){
 
-    const url = $("siteUrl").value.trim();
+        result.push(
+          buffer.trim()
+        );
 
-    if(url){
+        buffer = part;
 
-      status(
-        "siteStatus",
-        "✅ Website preview load हो गई।",
-        "ok"
-      );
+      }else{
 
-      log("Website preview loaded.");
+        buffer =
+          (
+            buffer +
+            " " +
+            part
+          ).trim();
 
-    }
-
-  }
-);
-
-
-/* =========================================================
-   NORMAL VOICE RECORDING
-========================================================= */
-
-async function startVoiceRecording(){
-
-  if(!navigator.mediaDevices ||
-     !navigator.mediaDevices.getUserMedia){
-
-    status(
-      "voiceStatus",
-      "❌ इस browser में voice recording supported नहीं है।",
-      "err"
-    );
-
-    return;
-  }
-
-
-  try{
-
-    voiceChunks = [];
-
-    voiceStream =
-      await navigator.mediaDevices.getUserMedia({
-        audio:{
-          echoCancellation:true,
-          noiseSuppression:true,
-          autoGainControl:true
-        }
-      });
-
-
-    const mimeTypes = [
-      "audio/webm;codecs=opus",
-      "audio/webm",
-      "audio/ogg;codecs=opus"
-    ];
-
-
-    let mimeType = "";
-
-    for(const type of mimeTypes){
-
-      if(MediaRecorder.isTypeSupported(type)){
-
-        mimeType = type;
-        break;
       }
 
     }
 
 
-    voiceRecorder = mimeType
-      ? new MediaRecorder(
-          voiceStream,
-          {mimeType:mimeType}
-        )
-      : new MediaRecorder(voiceStream);
+    if(buffer){
 
+      result.push(
+        buffer.trim()
+      );
 
-    voiceRecorder.ondataavailable =
-      function(event){
-
-        if(event.data &&
-           event.data.size > 0){
-
-          voiceChunks.push(event.data);
-
-        }
-
-      };
-
-
-    voiceRecorder.onstop =
-      function(){
-
-        lastVoiceBlob =
-          new Blob(
-            voiceChunks,
-            {
-              type:
-                voiceRecorder.mimeType ||
-                "audio/webm"
-            }
-          );
-
-
-        const url =
-          URL.createObjectURL(lastVoiceBlob);
-
-
-        $("voiceDownload").href = url;
-
-        $("voiceDownload").style.display =
-          "inline-block";
-
-
-        status(
-          "voiceStatus",
-          "✅ Voice recording complete. Download Voice दबाकर save करें।",
-          "ok"
-        );
-
-
-        voiceStream
-          .getTracks()
-          .forEach(
-            track => track.stop()
-          );
-
-
-        log("Normal voice recording completed.");
-
-      };
-
-
-    voiceRecorder.start(250);
-
-    $("voiceStart").disabled = true;
-
-    $("voiceStop").disabled = false;
-
-
-    status(
-      "voiceStatus",
-      "🎙️ Voice recording चालू है। बोलना शुरू करें।",
-      "ok"
-    );
-
-
-    log("Normal voice recording started.");
-
-  }catch(error){
-
-    status(
-      "voiceStatus",
-      "❌ Microphone error: " +
-      error.message,
-      "err"
-    );
-
-    log(
-      "Voice error: " +
-      error.message
-    );
-
-  }
-
-}
-
-
-function stopVoiceRecording(){
-
-  if(
-    voiceRecorder &&
-    voiceRecorder.state !== "inactive"
-  ){
-
-    voiceRecorder.stop();
-
-  }
-
-  $("voiceStart").disabled = false;
-
-  $("voiceStop").disabled = true;
-
-}
-
-
-$("voiceStart").addEventListener(
-  "click",
-  startVoiceRecording
-);
-
-
-$("voiceStop").addEventListener(
-  "click",
-  stopVoiceRecording
-);
-
-
-/* =========================================================
-   VOICE FILE
-========================================================= */
-
-$("voiceFile").addEventListener(
-  "change",
-  function(){
-
-    const file =
-      this.files && this.files[0];
-
-    if(!file){
-
-      return;
     }
 
-
-    status(
-      "voiceStatus",
-      "✅ Voice file selected: " +
-      file.name,
-      "ok"
-    );
-
-
-    log(
-      "Voice file selected: " +
-      file.name
-    );
-
   }
-);
 
 
-$("voiceClear").addEventListener(
-  "click",
-  function(){
+  return result;
 
-    $("voiceFile").value = "";
-
-    status(
-      "voiceStatus",
-      "Voice file remove हो गई।",
-      ""
-    );
-
-    log("Voice file removed.");
-
-  }
-);
+}
 
 
 /* =========================================================
-   HINDI VOICE TEST
+   GET HINDI VOICE
 ========================================================= */
 
-function speakHindi(){
+function getHindiVoice(){
 
-  const text =
-    $("notes").value.trim();
+  if(
+    !("speechSynthesis" in window)
+  ){
 
+    return null;
 
-  if(!text){
-
-    status(
-      "testVoiceStatus",
-      "❌ पहले Hindi Script लिखें।",
-      "err"
-    );
-
-    return;
   }
 
-
-  if(!("speechSynthesis" in window)){
-
-    status(
-      "testVoiceStatus",
-      "❌ इस browser में Speech Voice supported नहीं है।",
-      "err"
-    );
-
-    return;
-  }
-
-
-  speechSynthesis.cancel();
-
-
-  const utterance =
-    new SpeechSynthesisUtterance(text);
-
-
-  utterance.lang = "hi-IN";
-
-  utterance.rate = 0.9;
-
-  utterance.pitch = 1;
-
-
-  /*
-    Try to select Hindi voice.
-  */
 
   const voices =
     speechSynthesis.getVoices();
 
 
-  let hindiVoice =
+  /*
+    First priority:
+    Hindi language voice
+  */
+
+  let voice =
     voices.find(
-      voice =>
-        voice.lang &&
-        voice.lang.toLowerCase().startsWith("hi")
+      v =>
+        /^hi(-|_)/i.test(
+          v.lang
+        )
     );
 
 
-  if(!hindiVoice){
+  /*
+    Second priority:
+    voice name contains Hindi
+  */
 
-    hindiVoice =
+  if(!voice){
+
+    voice =
       voices.find(
-        voice =>
-          voice.name &&
-          /hindi|india/i.test(
-            voice.name
+        v =>
+          /hindi/i.test(
+            v.name
           )
       );
 
   }
 
 
-  if(hindiVoice){
+  /*
+    Third priority:
+    any hi voice
+  */
 
-    utterance.voice = hindiVoice;
+  if(!voice){
 
-    log(
-      "Hindi voice selected: " +
-      hindiVoice.name
-    );
-
-  }else{
-
-    log(
-      "No dedicated Hindi voice found. Browser fallback voice used."
-    );
+    voice =
+      voices.find(
+        v =>
+          /^hi/i.test(
+            v.lang
+          )
+      );
 
   }
 
 
-  utterance.onstart =
-    function(){
-
-      status(
-        "testVoiceStatus",
-        "🔊 Hindi Voice Test चल रहा है...",
-        "ok"
-      );
-
-    };
-
-
-  utterance.onend =
-    function(){
-
-      status(
-        "testVoiceStatus",
-        "✅ Hindi Voice Test complete.",
-        "ok"
-      );
-
-      log("Hindi Voice Test completed.");
-
-    };
-
-
-  utterance.onerror =
-    function(event){
-
-      status(
-        "testVoiceStatus",
-        "❌ Voice Test error: " +
-        event.error,
-        "err"
-      );
-
-      log(
-        "Voice Test error: " +
-        event.error
-      );
-
-    };
-
-
-  speechSynthesis.speak(
-    utterance
-  );
-
-}
-
-
-$("testVoice").addEventListener(
-  "click",
-  speakHindi
-);
-
-
-/* =========================================================
-   STOP VOICE TEST
-========================================================= */
-
-$("stopSpeech").addEventListener(
-  "click",
-  function(){
-
-    if("speechSynthesis" in window){
-
-      speechSynthesis.cancel();
-
-    }
-
-    status(
-      "testVoiceStatus",
-      "Voice Test stop हो गया।",
-      ""
-    );
-
-    log("Voice Test stopped.");
-
-  }
-);
-
-
-/* =========================================================
-   TIMER
-========================================================= */
-
-function startTimer(){
-
-  recordingStartTime =
-    Date.now();
-
-
-  clearInterval(timerInterval);
-
-
-  timerInterval =
-    setInterval(
-      function(){
-
-        const seconds =
-          Math.floor(
-            (Date.now() -
-            recordingStartTime) / 1000
-          );
-
-
-        const minutes =
-          Math.floor(seconds / 60);
-
-
-        const remaining =
-          seconds % 60;
-
-
-        $("timer").textContent =
-          String(minutes).padStart(2,"0") +
-          ":" +
-          String(remaining).padStart(2,"0");
-
-      },
-      500
-    );
-
-}
-
-
-function stopTimer(){
-
-  clearInterval(timerInterval);
-
-  $("timer").textContent =
-    "00:00";
+  return voice || null;
 
 }
 
 
 /* =========================================================
-   GET RECORDING MIME TYPE
+   HINDI SPEECH ENGINE
 ========================================================= */
 
-function getVideoMimeType(){
-
-  const types = [
-
-    "video/webm;codecs=vp9,opus",
-
-    "video/webm;codecs=vp8,opus",
-
-    "video/webm"
-
-  ];
-
-
-  for(const type of types){
-
-    if(MediaRecorder.isTypeSupported(type)){
-
-      return type;
-
-    }
-
-  }
-
-
-  return "";
-
-}
-
-
-/* =========================================================
-   START SCREEN RECORDING
-========================================================= */
-
-async function startScreenRecording(
-  testedVoice = false
+function speakHindi(
+  text,
+  onDone
 ){
 
-  const url =
-    getWebsiteUrl();
+  if(
+    !("speechSynthesis" in window)
+  ){
 
+    setStatus(
+      "voiceStatus",
+      "इस browser में Speech Synthesis उपलब्ध नहीं है।"
+    );
 
-  if(!url){
+    log(
+      "Speech synthesis unavailable."
+    );
 
     return;
 
   }
 
 
+  /*
+    Stop previous speech
+  */
+
+  speechSynthesis.cancel();
+
+
+  const parts =
+    splitSpeech(text);
+
+
+  if(!parts.length){
+
+    setStatus(
+      "voiceStatus",
+      "Script खाली है। पहले Hindi script लिखें।"
+    );
+
+    return;
+
+  }
+
+
+  const voice =
+    getHindiVoice();
+
+
+  let index = 0;
+
+
+  function speakNext(){
+
+    /*
+      All sentences completed
+    */
+
+    if(
+      index >= parts.length
+    ){
+
+      testedVoiceUtterance = null;
+
+      if(onDone){
+        onDone();
+      }
+
+      return;
+
+    }
+
+
+    const sentence =
+      parts[index++];
+
+
+    const utterance =
+      new SpeechSynthesisUtterance(
+        sentence
+      );
+
+
+    /*
+      Hindi voice
+    */
+
+    utterance.lang =
+      voice
+      ? voice.lang
+      : "hi-IN";
+
+
+    if(voice){
+
+      utterance.voice =
+        voice;
+
+    }
+
+
+    /*
+      ==============================================
+      MAIN SPEED FIX
+      ==============================================
+
+      0.75x = slower and clearer Hindi narration
+    */
+
+    utterance.rate =
+      getSpeed();
+
+
+    /*
+      Natural pitch
+    */
+
+    utterance.pitch = 1;
+
+
+    /*
+      Full volume
+    */
+
+    utterance.volume = 1;
+
+
+    utterance.onstart =
+      () => {
+
+        setStatus(
+          "voiceStatus",
+          "Hindi voice बोल रही है — " +
+          getSpeed() +
+          "x speed"
+        );
+
+      };
+
+
+    utterance.onerror =
+      event => {
+
+        log(
+          "Hindi voice error: " +
+          (
+            event.error ||
+            "unknown"
+          )
+        );
+
+        if(onDone){
+          onDone();
+        }
+
+      };
+
+
+    utterance.onend =
+      () => {
+
+        /*
+          Natural pause between sentences.
+        */
+
+        const delay =
+          pauseMs();
+
+
+        setTimeout(
+          speakNext,
+          delay
+        );
+
+      };
+
+
+    testedVoiceUtterance =
+      utterance;
+
+
+    speechSynthesis.speak(
+      utterance
+    );
+
+  }
+
+
+  speakNext();
+
+}
+
+
+/* =========================================================
+   LOAD WEBSITE
+========================================================= */
+
+$("enterWebsite").onclick =
+  () => {
+
+    const url =
+      $("websiteUrl")
+        .value
+        .trim();
+
+
+    if(!validUrl(url)){
+
+      setStatus(
+        "urlStatus",
+        "कृपया valid http:// या https:// URL डालें।"
+      );
+
+      return;
+
+    }
+
+
+    currentUrl =
+      url;
+
+
+    $("preview").src =
+      url;
+
+
+    setStatus(
+      "urlStatus",
+      "Website preview load करने की कोशिश की जा रही है। अगर blank रहे तो Open in New Tab करें।"
+    );
+
+
+    log(
+      "Website entered: " +
+      url
+    );
+
+  };
+
+
+/* =========================================================
+   OPEN NEW TAB
+========================================================= */
+
+$("openNewTab").onclick =
+  () => {
+
+    const url =
+      $("websiteUrl")
+        .value
+        .trim();
+
+
+    if(!validUrl(url)){
+
+      setStatus(
+        "urlStatus",
+        "पहले valid website URL डालें।"
+      );
+
+      return;
+
+    }
+
+
+    currentUrl =
+      url;
+
+
+    const newWindow =
+      window.open(
+        url,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+
+    if(!newWindow){
+
+      setStatus(
+        "urlStatus",
+        "Popup blocked है। Browser में popup allow करें।"
+      );
+
+      return;
+
+    }
+
+
+    setStatus(
+      "urlStatus",
+      "Website new tab में खुल गई।"
+    );
+
+
+    log(
+      "Website opened in new tab."
+    );
+
+  };
+
+
+/* =========================================================
+   HINDI VOICE TEST
+========================================================= */
+
+$("testVoice").onclick =
+  () => {
+
+    const text =
+      $("scriptText")
+        .value
+        .trim();
+
+
+    if(!text){
+
+      setStatus(
+        "voiceStatus",
+        "पहले Hindi tutorial script लिखें।"
+      );
+
+      return;
+
+    }
+
+
+    /*
+      Always cancel old speech
+    */
+
+    speechSynthesis.cancel();
+
+
+    log(
+      "Hindi Voice Test started at 0.75x."
+    );
+
+
+    speakHindi(
+      text,
+      () => {
+
+        setStatus(
+          "voiceStatus",
+          "Hindi Voice Test complete — 0.75x speed."
+        );
+
+
+        log(
+          "Hindi Voice Test complete."
+        );
+
+      }
+    );
+
+  };
+
+
+/* =========================================================
+   RECORD REAL MICROPHONE VOICE
+========================================================= */
+
+$("recordVoice").onclick =
+  async () => {
+
+    try{
+
+      const stream =
+        await navigator.mediaDevices
+          .getUserMedia({
+
+            audio:{
+              echoCancellation:true,
+              noiseSuppression:true,
+              autoGainControl:true
+            }
+
+          });
+
+
+      voiceChunks = [];
+
+
+      voiceRecorder =
+        new MediaRecorder(
+          stream
+        );
+
+
+      voiceRecorder.ondataavailable =
+        event => {
+
+          if(event.data.size){
+
+            voiceChunks.push(
+              event.data
+            );
+
+          }
+
+        };
+
+
+      voiceRecorder.onstop =
+        () => {
+
+          recordedVoiceBlob =
+            new Blob(
+              voiceChunks,
+              {
+                type:
+                  voiceRecorder.mimeType ||
+                  "audio/webm"
+              }
+            );
+
+
+          stream
+            .getTracks()
+            .forEach(
+              track =>
+                track.stop()
+            );
+
+
+          showVoiceBlob(
+            recordedVoiceBlob
+          );
+
+
+          $("downloadVoice")
+            .disabled = false;
+
+
+          log(
+            "Voice recording saved."
+          );
+
+
+          setStatus(
+            "voiceStatus",
+            "Voice recording complete."
+          );
+
+        };
+
+
+      voiceRecorder.start();
+
+
+      $("recordVoice")
+        .disabled = true;
+
+
+      $("stopVoice")
+        .disabled = false;
+
+
+      setStatus(
+        "voiceStatus",
+        "Voice recording चल रही है..."
+      );
+
+
+      log(
+        "Microphone voice recording started."
+      );
+
+    }catch(error){
+
+      setStatus(
+        "voiceStatus",
+        "Microphone error: " +
+        error.message
+      );
+
+
+      log(
+        "Voice record error: " +
+        error.message
+      );
+
+    }
+
+  };
+
+
+/* =========================================================
+   STOP MICROPHONE VOICE
+========================================================= */
+
+$("stopVoice").onclick =
+  () => {
+
+    if(
+      voiceRecorder &&
+      voiceRecorder.state !== "inactive"
+    ){
+
+      voiceRecorder.stop();
+
+    }
+
+
+    $("recordVoice")
+      .disabled = false;
+
+
+    $("stopVoice")
+      .disabled = true;
+
+  };
+
+
+/* =========================================================
+   SHOW VOICE
+========================================================= */
+
+function showVoiceBlob(blob){
+
+  if(voiceObjectUrl){
+
+    URL.revokeObjectURL(
+      voiceObjectUrl
+    );
+
+  }
+
+
+  voiceObjectUrl =
+    URL.createObjectURL(
+      blob
+    );
+
+
+  $("voicePlayer").src =
+    voiceObjectUrl;
+
+
+  $("voicePlayer").style.display =
+    "block";
+
+}
+
+
+/* =========================================================
+   DOWNLOAD VOICE
+========================================================= */
+
+$("downloadVoice").onclick =
+  () => {
+
+    const blob =
+      recordedVoiceBlob ||
+      uploadedVoiceBlob;
+
+
+    if(!blob){
+      return;
+    }
+
+
+    const url =
+      URL.createObjectURL(
+        blob
+      );
+
+
+    const link =
+      document.createElement(
+        "a"
+      );
+
+
+    link.href =
+      url;
+
+
+    link.download =
+      "great-india-hindi-voice.webm";
+
+
+    document.body.appendChild(
+      link
+    );
+
+
+    link.click();
+
+
+    link.remove();
+
+
+    setTimeout(
+      () =>
+        URL.revokeObjectURL(
+          url
+        ),
+      1000
+    );
+
+  };
+
+
+/* =========================================================
+   ADD VOICE FILE
+========================================================= */
+
+$("addVoiceFile").onclick =
+  () => {
+
+    $("voiceFile").click();
+
+  };
+
+
+$("voiceFile").onchange =
+  () => {
+
+    const file =
+      $("voiceFile")
+        .files[0];
+
+
+    if(!file){
+      return;
+    }
+
+
+    uploadedVoiceBlob =
+      file;
+
+
+    recordedVoiceBlob =
+      null;
+
+
+    showVoiceBlob(
+      file
+    );
+
+
+    $("downloadVoice")
+      .disabled = false;
+
+
+    setStatus(
+      "voiceStatus",
+      "Voice file added: " +
+      file.name
+    );
+
+
+    log(
+      "Voice file added."
+    );
+
+  };
+
+
+/* =========================================================
+   REMOVE VOICE
+========================================================= */
+
+$("removeVoiceFile").onclick =
+  () => {
+
+    uploadedVoiceBlob =
+      null;
+
+
+    recordedVoiceBlob =
+      null;
+
+
+    $("voiceFile").value =
+      "";
+
+
+    $("voicePlayer")
+      .style.display =
+      "none";
+
+
+    $("downloadVoice")
+      .disabled = true;
+
+
+    setStatus(
+      "voiceStatus",
+      "Voice file removed."
+    );
+
+
+    log(
+      "Voice file removed."
+    );
+
+  };
+
+
+/* =========================================================
+   TESTED VOICE RECORDING
+========================================================= */
+
+async function startTestedVoiceRecording(){
+
   if(
     !navigator.mediaDevices ||
     !navigator.mediaDevices.getDisplayMedia
   ){
 
-    status(
+    setStatus(
       "recordStatus",
-      "❌ Chrome या Edge का latest version इस्तेमाल करें।",
-      "err"
+      "यह browser screen recording support नहीं करता। Latest Chrome या Edge use करें।"
+    );
+
+    return;
+
+  }
+
+
+  const text =
+    $("scriptText")
+      .value
+      .trim();
+
+
+  if(!text){
+
+    setStatus(
+      "voiceStatus",
+      "पहले Hindi script लिखें।"
     );
 
     return;
@@ -1423,123 +1629,100 @@ async function startScreenRecording(
 
   try{
 
-    chunks = [];
+    /*
+      IMPORTANT:
 
+      केवल display/screen audio request किया जा रहा है।
+      Microphone request नहीं किया गया।
+    */
 
-    $("startRecord").disabled = true;
+    screenStream =
+      await navigator.mediaDevices
+        .getDisplayMedia({
 
-    $("startTestedVoiceRecord").disabled = true;
+          video:true,
 
-    $("stopRecord").disabled = false;
+          audio:true,
 
-    $("cancelRecord").disabled = false;
+          preferCurrentTab:true,
 
+          selfBrowserSurface:
+            "include",
 
-    if(testedVoice){
+          surfaceSwitching:
+            "exclude"
 
-      status(
-        "recordStatus",
-        "⏳ Chrome में This Tab चुनें और Share tab audio ON करें।",
-        "warn"
-      );
-
-    }else{
-
-      status(
-        "recordStatus",
-        "⏳ Screen/Tab चुनें और Share दबाएँ।",
-        "warn"
-      );
-
-    }
+        });
 
 
     /*
-      Screen + tab audio.
-      No microphone is requested here.
+      Check audio track
     */
 
-    recordStream =
-      await navigator.mediaDevices.getDisplayMedia({
-
-        video:{
-          frameRate:
-            Number(
-              $("quality").value
-            )
-        },
-
-        audio:true,
-
-        preferCurrentTab:true,
-
-        selfBrowserSurface:"include",
-
-        surfaceSwitching:"exclude"
-
-      });
-
-
-    const videoTrack =
-      recordStream.getVideoTracks()[0];
-
-
-    if(!videoTrack){
-
-      throw new Error(
-        "Video track नहीं मिला।"
-      );
-
-    }
-
-
     const audioTracks =
-      recordStream.getAudioTracks();
+      screenStream
+        .getAudioTracks();
 
 
-    if(testedVoice &&
-       audioTracks.length === 0){
+    if(!audioTracks.length){
 
-      recordStream
+      screenStream
         .getTracks()
         .forEach(
-          track => track.stop()
+          track =>
+            track.stop()
         );
 
 
-      throw new Error(
-        "Tab audio नहीं मिला। This Tab चुनकर Share tab audio ON करें।"
+      screenStream =
+        null;
+
+
+      setStatus(
+        "recordStatus",
+        "Tab audio नहीं मिला। Share dialog में This Tab + Share tab audio चुनें।"
       );
+
+
+      return;
 
     }
 
 
-    const mimeType =
-      getVideoMimeType();
+    recordedChunks = [];
+
+
+    let mimeType =
+      "video/webm";
+
+
+    if(
+      MediaRecorder.isTypeSupported(
+        "video/webm;codecs=vp9,opus"
+      )
+    ){
+
+      mimeType =
+        "video/webm;codecs=vp9,opus";
+
+    }
 
 
     mediaRecorder =
-      mimeType
-      ? new MediaRecorder(
-          recordStream,
-          {
-            mimeType:mimeType
-          }
-        )
-      : new MediaRecorder(
-          recordStream
-        );
+      new MediaRecorder(
+        screenStream,
+        {
+          mimeType:mimeType
+        }
+      );
 
 
     mediaRecorder.ondataavailable =
-      function(event){
+      event => {
 
-        if(
-          event.data &&
-          event.data.size > 0
-        ){
+        if(event.data.size){
 
-          chunks.push(
+          recordedChunks.push(
             event.data
           );
 
@@ -1548,189 +1731,130 @@ async function startScreenRecording(
       };
 
 
-    mediaRecorder.onerror =
-      function(event){
-
-        log(
-          "MediaRecorder error."
-        );
-
-        status(
-          "recordStatus",
-          "❌ Recording error आया।",
-          "err"
-        );
-
-      };
-
-
     mediaRecorder.onstop =
-      function(){
+      () => {
 
-        stopTimer();
-
-
-        if(chunks.length === 0){
-
-          status(
-            "recordStatus",
-            "❌ कोई recording data नहीं मिला।",
-            "err"
-          );
-
-          cleanupRecording();
-
-          return;
-
-        }
-
-
-        const finalType =
-          mediaRecorder.mimeType ||
-          "video/webm";
-
-
-        lastVideoBlob =
-          new Blob(
-            chunks,
-            {
-              type:finalType
-            }
-          );
-
-
-        const videoUrl =
-          URL.createObjectURL(
-            lastVideoBlob
-          );
-
-
-        $("result").src =
-          videoUrl;
-
-
-        $("videoDownload").href =
-          videoUrl;
-
-
-        $("videoDownload").download =
-          testedVoice
-          ? "great-india-tested-voice-video.webm"
-          : "great-india-hindi-tutorial.webm";
-
-
-        $("videoDownload").style.display =
-          "inline-block";
-
-
-        status(
-          "recordStatus",
-          testedVoice
-          ? "✅ Tested Voice + Screen recording complete."
-          : "✅ Screen recording complete.",
-          "ok"
-        );
-
-
-        status(
-          "videoStatus",
-          "✅ Video तैयार है। Play Video या Download Video दबाएँ।",
-          "ok"
-        );
-
-
-        log(
-          "Recording completed. Size: " +
-          Math.round(
-            lastVideoBlob.size / 1024
-          ) +
-          " KB"
-        );
-
-
-        cleanupRecording();
+        finishTestedVoiceVideo();
 
       };
 
 
     /*
-      If user manually stops screen sharing.
+      If user stops sharing
     */
 
-    videoTrack.addEventListener(
-      "ended",
-      function(){
+    const videoTrack =
+      screenStream
+        .getVideoTracks()[0];
 
-        if(
-          mediaRecorder &&
-          mediaRecorder.state === "recording"
-        ){
 
-          mediaRecorder.stop();
+    if(videoTrack){
+
+      videoTrack.addEventListener(
+        "ended",
+        () => {
+
+          stopAllRecording();
 
         }
-
-      }
-    );
-
-
-    mediaRecorder.start(250);
-
-    startTimer();
-
-
-    status(
-      "recordStatus",
-      testedVoice
-      ? "🔴 Tested Voice recording चालू है। Website पर अपने steps करें।"
-      : "🔴 Screen recording चालू है। Website पर अपने steps करें।",
-      "ok"
-    );
-
-
-    log(
-      testedVoice
-      ? "Tested Voice screen recording started."
-      : "Normal screen recording started."
-    );
-
-
-    /*
-      Start speech only AFTER recording has started.
-      This gives the browser a better chance to capture
-      the tab's audio.
-    */
-
-    if(testedVoice){
-
-      setTimeout(
-        function(){
-
-          speakHindi();
-
-        },
-        500
       );
 
     }
 
-  }catch(error){
 
-    status(
+    /*
+      Start video recording first.
+    */
+
+    mediaRecorder.start(250);
+
+
+    testedVoiceActive =
+      true;
+
+
+    $("startTestedVoiceRecord")
+      .disabled = true;
+
+
+    $("stopTestedVoiceRecord")
+      .disabled = false;
+
+
+    $("openRecording")
+      .disabled = true;
+
+
+    $("stopRecording")
+      .disabled = false;
+
+
+    $("cancelRecording")
+      .disabled = false;
+
+
+    setStatus(
       "recordStatus",
-      "❌ Recording शुरू नहीं हुई: " +
-      error.message,
-      "err"
+      "Recording started.\nThis Tab + Share tab audio selected."
+    );
+
+
+    setStatus(
+      "voiceStatus",
+      "Tested Hindi voice 0.75x speed पर शुरू हो रही है..."
     );
 
 
     log(
+      "Tested Voice recording started. Microphone NOT requested."
+    );
+
+
+    /*
+      Small delay so recorder is already running.
+    */
+
+    setTimeout(
+      () => {
+
+        if(!testedVoiceActive){
+          return;
+        }
+
+
+        speakHindi(
+          text,
+          () => {
+
+            setStatus(
+              "voiceStatus",
+              "Tested Hindi voice narration complete."
+            );
+
+          }
+        );
+
+      },
+      300
+    );
+
+
+  }catch(error){
+
+    setStatus(
+      "recordStatus",
       "Recording error: " +
       error.message
     );
 
 
-    cleanupRecording();
+    log(
+      "Tested Voice recording error: " +
+      error.message
+    );
+
+
+    cleanupStreams();
 
   }
 
@@ -1738,170 +1862,501 @@ async function startScreenRecording(
 
 
 /* =========================================================
-   TESTED VOICE BUTTON
+   START TESTED VOICE
 ========================================================= */
 
-$("startTestedVoiceRecord").addEventListener(
-  "click",
-  function(){
-
-    const text =
-      $("notes").value.trim();
+$("startTestedVoiceRecord").onclick =
+  startTestedVoiceRecording;
 
 
-    if(!text){
+/* =========================================================
+   FINISH TESTED VOICE VIDEO
+========================================================= */
 
-      status(
-        "testVoiceStatus",
-        "❌ पहले Hindi Script लिखें।",
-        "err"
+function finishTestedVoiceVideo(){
+
+  if(!recordedChunks.length){
+    return;
+  }
+
+
+  recordedVideoBlob =
+    new Blob(
+      recordedChunks,
+      {
+        type:
+          mediaRecorder.mimeType ||
+          "video/webm"
+      }
+    );
+
+
+  if(recordedVideoUrl){
+
+    URL.revokeObjectURL(
+      recordedVideoUrl
+    );
+
+  }
+
+
+  recordedVideoUrl =
+    URL.createObjectURL(
+      recordedVideoBlob
+    );
+
+
+  $("recordedVideo").src =
+    recordedVideoUrl;
+
+
+  $("recordedVideo")
+    .style.display =
+    "block";
+
+
+  $("playVideo")
+    .disabled = false;
+
+
+  $("downloadVideo")
+    .disabled = false;
+
+
+  $("createVideo")
+    .disabled = false;
+
+
+  setStatus(
+    "recordStatus",
+    "Tested Voice recording complete."
+  );
+
+
+  setStatus(
+    "videoStatus",
+    "Video तैयार है। Play या Download Video दबाएँ।"
+  );
+
+
+  log(
+    "Tested Voice video recorded successfully."
+  );
+
+}
+
+
+/* =========================================================
+   CLEAN STREAMS
+========================================================= */
+
+function cleanupStreams(){
+
+  if(screenStream){
+
+    screenStream
+      .getTracks()
+      .forEach(
+        track =>
+          track.stop()
       );
 
-      return;
 
-    }
-
-
-    startScreenRecording(true);
+    screenStream =
+      null;
 
   }
-);
+
+
+  if(
+    "speechSynthesis" in window
+  ){
+
+    speechSynthesis.cancel();
+
+  }
+
+
+  testedVoiceActive =
+    false;
+
+}
 
 
 /* =========================================================
-   NORMAL SCREEN RECORD BUTTON
+   STOP ALL RECORDING
 ========================================================= */
 
-$("startRecord").addEventListener(
-  "click",
-  function(){
+function stopAllRecording(){
 
-    startScreenRecording(false);
+  testedVoiceActive =
+    false;
+
+
+  if(
+    "speechSynthesis" in window
+  ){
+
+    speechSynthesis.cancel();
 
   }
-);
+
+
+  if(
+    mediaRecorder &&
+    mediaRecorder.state !== "inactive"
+  ){
+
+    mediaRecorder.stop();
+
+  }
+
+
+  if(screenStream){
+
+    screenStream
+      .getTracks()
+      .forEach(
+        track =>
+          track.stop()
+      );
+
+
+    screenStream =
+      null;
+
+  }
+
+
+  $("startTestedVoiceRecord")
+    .disabled = false;
+
+
+  $("stopTestedVoiceRecord")
+    .disabled = true;
+
+
+  $("openRecording")
+    .disabled = false;
+
+
+  $("stopRecording")
+    .disabled = true;
+
+
+  $("cancelRecording")
+    .disabled = true;
+
+}
 
 
 /* =========================================================
-   STOP RECORDING
+   STOP TESTED VOICE
 ========================================================= */
 
-$("stopRecord").addEventListener(
-  "click",
-  function(){
+$("stopTestedVoiceRecord").onclick =
+  () => {
 
-    if(
-      mediaRecorder &&
-      mediaRecorder.state === "recording"
-    ){
+    stopAllRecording();
 
-      mediaRecorder.stop();
+    setStatus(
+      "voiceStatus",
+      "Tested Voice stopped."
+    );
+
+  };
+
+
+/* =========================================================
+   NORMAL SCREEN RECORDING
+========================================================= */
+
+$("openRecording").onclick =
+  async () => {
+
+    try{
+
+      const url =
+        $("websiteUrl")
+          .value
+          .trim();
+
+
+      if(!validUrl(url)){
+
+        setStatus(
+          "recordStatus",
+          "पहले valid website URL डालें।"
+        );
+
+        return;
+
+      }
+
+
+      currentUrl =
+        url;
+
+
+      /*
+        Open website
+      */
+
+      window.open(
+        currentUrl,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+
+      /*
+        Screen capture
+      */
+
+      screenStream =
+        await navigator.mediaDevices
+          .getDisplayMedia({
+
+            video:true,
+
+            audio:true
+
+          });
+
+
+      recordedChunks = [];
+
+
+      mediaRecorder =
+        new MediaRecorder(
+          screenStream
+        );
+
+
+      mediaRecorder.ondataavailable =
+        event => {
+
+          if(event.data.size){
+
+            recordedChunks.push(
+              event.data
+            );
+
+          }
+
+        };
+
+
+      mediaRecorder.onstop =
+        finishVideoRecording;
+
+
+      const track =
+        screenStream
+          .getVideoTracks()[0];
+
+
+      if(track){
+
+        track.addEventListener(
+          "ended",
+          () => {
+
+            stopAllRecording();
+
+          }
+        );
+
+      }
+
+
+      mediaRecorder.start(250);
+
+
+      $("openRecording")
+        .disabled = true;
+
+
+      $("stopRecording")
+        .disabled = false;
+
+
+      $("cancelRecording")
+        .disabled = false;
+
+
+      setStatus(
+        "recordStatus",
+        "Screen recording चल रही है।"
+      );
+
 
       log(
-        "Recording stopped by user."
+        "Screen recording started."
       );
+
+    }catch(error){
+
+      setStatus(
+        "recordStatus",
+        "Recording error: " +
+        error.message
+      );
+
+
+      log(
+        "Recording error: " +
+        error.message
+      );
+
+
+      cleanupStreams();
 
     }
 
-  }
-);
+  };
+
+
+/* =========================================================
+   STOP NORMAL RECORDING
+========================================================= */
+
+$("stopRecording").onclick =
+  () => {
+
+    stopAllRecording();
+
+  };
 
 
 /* =========================================================
    CANCEL RECORDING
 ========================================================= */
 
-$("cancelRecord").addEventListener(
-  "click",
-  function(){
+$("cancelRecording").onclick =
+  () => {
 
     if(
       mediaRecorder &&
-      mediaRecorder.state === "recording"
+      mediaRecorder.state !== "inactive"
     ){
-
-      mediaRecorder.onstop = null;
 
       mediaRecorder.stop();
 
     }
 
 
-    if(recordStream){
-
-      recordStream
-        .getTracks()
-        .forEach(
-          track => track.stop()
-        );
-
-    }
+    recordedChunks = [];
 
 
-    chunks = [];
+    recordedVideoBlob =
+      null;
 
-    lastVideoBlob = null;
 
-    $("result").removeAttribute("src");
+    cleanupStreams();
 
-    $("videoDownload").style.display =
+
+    $("recordedVideo")
+      .style.display =
       "none";
 
 
-    stopTimer();
+    $("playVideo")
+      .disabled = true;
 
 
-    status(
+    $("downloadVideo")
+      .disabled = true;
+
+
+    $("openRecording")
+      .disabled = false;
+
+
+    $("stopRecording")
+      .disabled = true;
+
+
+    $("cancelRecording")
+      .disabled = true;
+
+
+    setStatus(
       "recordStatus",
-      "Recording cancel हो गई।",
-      "warn"
+      "Recording cancelled."
     );
 
 
-    status(
-      "videoStatus",
-      "कोई video तैयार नहीं है।",
-      ""
+    log(
+      "Recording cancelled."
     );
 
-
-    cleanupRecording();
-
-    log("Recording cancelled.");
-
-  }
-);
+  };
 
 
 /* =========================================================
-   CLEANUP
+   FINISH NORMAL VIDEO
 ========================================================= */
 
-function cleanupRecording(){
+function finishVideoRecording(){
 
-  if(recordStream){
+  if(!recordedChunks.length){
+    return;
+  }
 
-    recordStream
-      .getTracks()
-      .forEach(
-        track => track.stop()
-      );
+
+  recordedVideoBlob =
+    new Blob(
+      recordedChunks,
+      {
+        type:
+          mediaRecorder.mimeType ||
+          "video/webm"
+      }
+    );
+
+
+  if(recordedVideoUrl){
+
+    URL.revokeObjectURL(
+      recordedVideoUrl
+    );
 
   }
 
 
-  recordStream = null;
+  recordedVideoUrl =
+    URL.createObjectURL(
+      recordedVideoBlob
+    );
 
-  mediaRecorder = null;
+
+  $("recordedVideo").src =
+    recordedVideoUrl;
 
 
-  $("startRecord").disabled = false;
+  $("recordedVideo")
+    .style.display =
+    "block";
 
-  $("startTestedVoiceRecord").disabled = false;
 
-  $("stopRecord").disabled = true;
+  $("playVideo")
+    .disabled = false;
 
-  $("cancelRecord").disabled = true;
+
+  $("downloadVideo")
+    .disabled = false;
+
+
+  setStatus(
+    "videoStatus",
+    "Video recording तैयार है।"
+  );
+
+
+  log(
+    "Video recording finished."
+  );
 
 }
 
@@ -1910,16 +2365,14 @@ function cleanupRecording(){
    CREATE VIDEO
 ========================================================= */
 
-$("createVideo").addEventListener(
-  "click",
-  function(){
+$("createVideo").onclick =
+  () => {
 
-    if(!lastVideoBlob){
+    if(!recordedVideoBlob){
 
-      status(
+      setStatus(
         "videoStatus",
-        "❌ पहले recording करें।",
-        "err"
+        "पहले screen recording करें।"
       );
 
       return;
@@ -1927,70 +2380,129 @@ $("createVideo").addEventListener(
     }
 
 
-    const url =
-      URL.createObjectURL(
-        lastVideoBlob
-      );
-
-
-    $("result").src =
-      url;
-
-
-    $("videoDownload").href =
-      url;
-
-
-    $("videoDownload").style.display =
-      "inline-block";
-
-
-    status(
+    setStatus(
       "videoStatus",
-      "✅ Video तैयार है। Download Video दबाएँ।",
-      "ok"
+      "Video तैयार है। यह browser-generated WebM video है।"
     );
 
 
     log(
-      "Video created successfully."
+      "Video created."
     );
 
-  }
-);
+  };
 
 
 /* =========================================================
    PLAY VIDEO
 ========================================================= */
 
-$("playVideo").addEventListener(
-  "click",
-  async function(){
+$("playVideo").onclick =
+  () => {
 
-    if(!lastVideoBlob){
+    if(!recordedVideoUrl){
+      return;
+    }
 
-      status(
-        "videoStatus",
-        "❌ पहले recording करें।",
-        "err"
-      );
+
+    $("recordedVideo")
+      .play();
+
+
+    $("recordedVideo")
+      .scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"center"
+
+      });
+
+  };
+
+
+/* =========================================================
+   DOWNLOAD VIDEO
+========================================================= */
+
+$("downloadVideo").onclick =
+  () => {
+
+    if(
+      !recordedVideoBlob ||
+      !recordedVideoUrl
+    ){
 
       return;
 
     }
 
 
-    try{
+    const link =
+      document.createElement(
+        "a"
+      );
 
-      await $("result").play();
 
-    }catch(error){
+    link.href =
+      recordedVideoUrl;
 
-      status(
-        "videoStatus",
-        "⚠️ Video play नहीं हुआ। नीचे video player पर Play दबाएँ।",
-        "warn"
+
+    link.download =
+      "great-india-hindi-tutorial.webm";
+
+
+    document.body.appendChild(
+      link
+    );
+
+
+    link.click();
+
+
+    link.remove();
+
+
+    log(
+      "Video download started."
+    );
+
+  };
+
+
+/* =========================================================
+   CLEANUP BEFORE EXIT
+========================================================= */
+
+window.addEventListener(
+  "beforeunload",
+  () => {
+
+    if(
+      "speechSynthesis" in window
+    ){
+
+      speechSynthesis.cancel();
+
+    }
+
+
+    cleanupStreams();
+
+
+    if(voiceObjectUrl){
+
+      URL.revokeObjectURL(
+        voiceObjectUrl
+      );
+
+    }
+
+
+    if(recordedVideoUrl){
+
+      URL.revokeObjectURL(
+        recordedVideoUrl
       );
 
     }
@@ -2000,33 +2512,16 @@ $("playVideo").addEventListener(
 
 
 /* =========================================================
-   INITIALIZATION
+   INITIAL STATUS
 ========================================================= */
 
-if("speechSynthesis" in window){
-
-  /*
-    Some browsers load voices asynchronously.
-  */
-
-  speechSynthesis.onvoiceschanged =
-    function(){
-
-      const voices =
-        speechSynthesis.getVoices();
-
-      log(
-        "Browser voices loaded: " +
-        voices.length
-      );
-
-    };
-
-}
+log(
+  "Great India Hindi Video Creator loaded."
+);
 
 
 log(
-  "Great India Hindi Video Creator ready."
+  "Hindi Voice Speed = 0.75x + Natural Pauses."
 );
 
 </script>
