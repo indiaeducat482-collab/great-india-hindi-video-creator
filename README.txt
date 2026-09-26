@@ -1,17 +1,14 @@
-Great India Cartoon Story Video Builder
+Great India Cartoon Story Video Builder V3
 
-This version is designed in the style of Hindi educational animated story videos:
-- Hindi script upload/paste
-- Scene-by-scene story breakdown
-- Cartoon human character drawn with Canvas (not just an emoji)
-- Scene backgrounds: road, market, school, home, village, help, happy ending
-- Character mouth animation during narration preview
-- Hindi subtitles
-- Hindi SpeechSynthesis narration in Preview
-- 16:9 / 9:16 / 1:1
-- WebM video rendering and download
+Main change:
+- Upload multiple story images.
+- Images are assigned to scenes in order: Scene 1 = Image 1, Scene 2 = Image 2, etc.
+- Uploaded images are displayed in the actual video canvas, with zoom/pan/float animation.
+- Hindi script is shown as subtitles.
+- Preview uses browser Hindi SpeechSynthesis.
+- Script upload supports TXT/MD/HTML text extraction.
+- Video download is WebM.
 
-IMPORTANT:
-The browser's SpeechSynthesis audio cannot be directly embedded into the Canvas MediaRecorder WebM in a normal page.
-So Preview has Hindi narration, but the downloaded WebM is silent.
-For the final production version matching the requested YouTube-style workflow, add a real TTS backend (MP3/WAV) and merge narration with the rendered video using FFmpeg/server-side processing. AI image generation can also be added for richer character/scene artwork.
+Important:
+This browser version uses the user's own images; it does not generate new AI cartoon images.
+To create a production MP4 with permanent Hindi narration, add a TTS backend that creates MP3/WAV and merge it with the rendered video using FFmpeg/server-side processing.
