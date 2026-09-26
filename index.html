@@ -175,24 +175,24 @@ window.addEventListener('beforeunload',cleanup);
 </script>
 <!-- ================= CARTOON VIDEO BUILDER ================= -->
 <section id="cartoonBuilder" style="margin:24px 0;padding:20px;border:1px solid #c7d2fe;border-radius:18px;background:#eef2ff">
-<h2>🎨 Cartoon Video Builder</h2>
-<p>Script upload/paste करें → cartoon human scenes बनेंगी → Hindi voice बोलेगी → preview करें।</p>
+<h2>🎨 Cartoon Story Video Builder</h2>
+<p>Hindi script upload/paste करें → animated cartoon scenes → Hindi narration preview → subtitles → video render.</p>
 
 <div class="card">
 <label>📄 Script Upload (.txt)</label>
 <input id="cartoonScriptFile" type="file" accept=".txt,.md,text/plain">
 
-<label>📝 Script</label>
-<textarea id="cartoonScript" style="min-height:180px" placeholder="जैसे: राम सुबह बाजार जाता है। वहां उसे एक छोटा बच्चा मिलता है। राम बच्चे की मदद करता है।"></textarea>
+<label>📝 Story / Script</label>
+<textarea id="cartoonScript" style="min-height:180px" placeholder="उदाहरण: राम सुबह बाजार जाता है। रास्ते में उसे एक छोटा बच्चा मिलता है। बच्चा रो रहा है। राम बच्चे की मदद करता है।"></textarea>
 
 <div class="two">
 <div>
 <label>🎭 Cartoon Style</label>
 <select id="cartoonStyle">
-<option value="2d">2D Kids Cartoon</option>
-<option value="3d">3D Cartoon</option>
+<option value="2d">2D Educational Cartoon</option>
 <option value="storybook">Storybook Cartoon</option>
-<option value="indian">Indian Cartoon</option>
+<option value="indian">Indian Story Cartoon</option>
+<option value="3d">3D-style Cartoon</option>
 </select>
 </div>
 <div>
@@ -207,24 +207,24 @@ window.addEventListener('beforeunload',cleanup);
 
 <div class="two">
 <div>
-<label>🗣️ Hindi Voice</label>
+<label>🗣️ Hindi Narrator</label>
 <select id="cartoonVoice">
-<option value="female">Hindi Female</option>
-<option value="male">Hindi Male</option>
-<option value="any">Auto Hindi Voice</option>
+<option value="female">Female Hindi</option>
+<option value="male">Male Hindi</option>
+<option value="any">Auto Hindi</option>
 </select>
 </div>
 <div>
-<label>🔊 Voice Speed</label>
-<input id="cartoonRate" type="range" min="0.65" max="1.15" value="0.90" step="0.05">
-<div class="hint">Normal Hindi narration</div>
+<label>🔊 Narration Speed</label>
+<input id="cartoonRate" type="range" min="0.70" max="1.05" value="0.88" step="0.01">
+<div class="hint">Educational story narration</div>
 </div>
 </div>
 
-<button id="cartoonMakeScenes" class="primary" type="button">✨ Script से Cartoon Scenes बनाएं</button>
+<button id="cartoonMakeScenes" class="primary" type="button">✨ Script से Animated Scenes बनाएं</button>
 <button id="cartoonClear" class="muted" type="button">✖ Clear</button>
 <div id="cartoonStatus" class="status">Script upload या paste करें।</div>
-<div id="cartoonVoiceStatus" class="status" style="margin-top:8px">🗣️ Hindi voice तैयार है। Preview दबाने पर narration शुरू होगी।</div>
+<div id="cartoonVoiceStatus" class="status" style="margin-top:8px">🗣️ Preview में Hindi narration चलेगी।</div>
 </div>
 
 <div class="card">
@@ -239,146 +239,464 @@ window.addEventListener('beforeunload',cleanup);
 
 <div class="card">
 <h3>▶️ Cartoon Preview</h3>
-<div id="cartoonStage" style="background:#111827;color:white;border-radius:16px;min-height:360px;display:flex;align-items:center;justify-content:center;text-align:center;padding:25px;overflow:hidden">
-<div>
-<div id="cartoonEmoji" style="font-size:72px">🎨</div>
-<h2 id="cartoonTitle">Cartoon Video Ready</h2>
-<p id="cartoonText">Script से scenes बनाने के बाद Preview देखें।</p>
-</div>
+<div id="cartoonStage" style="background:#0f172a;color:white;border-radius:16px;min-height:390px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;overflow:hidden">
+<canvas id="cartoonPreviewCanvas" width="1280" height="720" style="width:100%;height:auto;border-radius:14px;display:block"></canvas>
 </div>
 <br>
 <button id="cartoonPreviewBtn" class="blue" type="button">▶️ Preview + Hindi Voice</button>
-<button id="cartoonStopVoiceBtn" class="muted" type="button">🔇 Stop Voice</button>
+<button id="cartoonStopVoiceBtn" class="muted" type="button">🔇 Stop</button>
 <button id="cartoonRenderBtn" class="green" type="button">🎥 Create Video</button>
-<a id="cartoonDownload" style="display:none;text-decoration:none" download="cartoon-video.webm">
+<a id="cartoonDownload" style="display:none;text-decoration:none" download="great-india-cartoon-story.webm">
 <button class="green" type="button">⬇️ Download Video</button>
 </a>
 <video id="cartoonVideo" controls playsinline style="display:none;width:100%;margin-top:15px;border-radius:12px;background:#000"></video>
 <canvas id="cartoonCanvas" width="1280" height="720" style="display:none"></canvas>
-<div class="hint" style="margin-top:10px">ℹ️ इस browser version में Hindi voice Preview के दौरान बोलेगी। Downloaded WebM में browser SpeechSynthesis की आवाज़ embed नहीं की जा सकती; actual voice+MP4 के लिए TTS backend/API जोड़ना होगा।</div>
+<div class="hint" style="margin-top:10px">
+ℹ️ यह browser version animated cartoon scenes और Hindi voice preview बनाता है। Browser SpeechSynthesis की voice को सीधे downloaded WebM में embed नहीं किया जा सकता। Final MP4 में permanent Hindi voice के लिए TTS/audio backend जोड़ना होगा।
+</div>
 </div>
 </section>
 
 <script>
 (() => {
 'use strict';
-const $ = id => document.getElementById(id);
-let scenes = [], renderURL = null, raf = null, previewRun = 0;
 
-function escapeHTML(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+const $ = id => document.getElementById(id);
+let scenes = [], renderURL = null, raf = null, runId = 0, speaking = false;
+
+function esc(v){
+  return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+}
+
 function splitScript(text){
-  text=String(text||'').replace(/\r/g,'').trim(); if(!text)return [];
+  text=String(text||'').replace(/\r/g,'').trim();
+  if(!text)return [];
   let a=text.split(/\n\s*\n|\n+/).map(x=>x.trim()).filter(Boolean);
-  if(a.length===1)a=text.split(/(?<=[।.!?])\s+/).map(x=>x.trim()).filter(Boolean);
+  if(a.length===1) a=text.split(/(?<=[।.!?])\s+/).map(x=>x.trim()).filter(Boolean);
   const out=[];
-  a.forEach(p=>{if(p.length<=240)out.push(p);else p.split(/(?<=[।.!?])\s+/).forEach(x=>x.trim()&&out.push(x.trim()));});
+  a.forEach(p=>{
+    if(p.length<=220) out.push(p);
+    else p.split(/(?<=[।.!?])\s+/).forEach(x=>x.trim()&&out.push(x.trim()));
+  });
   return out;
 }
+
+function detectAction(t){
+  if(/बाजार|दुकान|shop|market/i.test(t)) return 'market';
+  if(/स्कूल|कक्षा|class|teacher|पढ़|विद्यालय/i.test(t)) return 'school';
+  if(/घर|कमरा|माँ|पिता|मम्मी|पापा/i.test(t)) return 'home';
+  if(/जंगल|पेड़|नदी|पहाड़|गाँव|गांव/i.test(t)) return 'village';
+  if(/रास्ता|सड़क|सड़क|चल|जाता|जाती|आता|आती|दौड़|भाग/i.test(t)) return 'road';
+  if(/मदद|बचाया|रो|रोता|रोती|बीमार|इलाज/i.test(t)) return 'help';
+  if(/खुश|जीत|सफल|पूरा|समाप्त|अंत|धन्यवाद/i.test(t)) return 'happy';
+  return 'story';
+}
+
 function makeScenes(text){
-  return splitScript(text).map((text,i)=>{
-    let action='Character talks / narrates';
-    if(/जाता|जाती|गया|गई|चल|दौड़|भाग|आता|आती/.test(text))action='Character moves';
-    if(/देख|मिला|मिली|पाया|पाई/.test(text))action='Character discovers';
-    if(/बोला|बोली|कहा|कहती|कहता/.test(text))action='Character dialogue';
-    if(/मदद|बचाया|पानी|इलाज|खाना/.test(text))action='Helping action';
-    if(/खुश|उड़|सफल|पूरा|समाप्त|अंत/.test(text))action='Happy ending';
-    return {no:i+1,text,action,duration:Math.max(4,Math.min(9,Math.ceil(text.length/22)))};
-  });
+  return splitScript(text).map((text,i)=>({
+    no:i+1,
+    text,
+    action:detectAction(text),
+    duration:Math.max(4.5,Math.min(10,Math.ceil(text.length/17)))
+  }));
 }
+
 function findCharacters(text){
-  const result=[];
+  const names=[];
   const patterns=[
-    /([A-Za-z][A-Za-z0-9_-]{2,20})\s+(?:नाम|ने|का|की|को)/g,
-    /([अ-ह][अ-ौ़्]*)\s+(?:नाम|ने|का|की|को)/g,
-    /(?:नाम\s+है|नाम\s+था|नाम\s+थी)\s+([A-Za-zअ-ह][A-Za-zअ-ौ़्]*)/g
+    /([A-Za-z][A-Za-z0-9_-]{2,20})\s+(?:ने|का|की|को|नाम)/g,
+    /([अ-ह][अ-ौ़्]*)\s+(?:ने|का|की|को|नाम)/g,
+    /(?:नाम\s+(?:है|था|थी))\s+([A-Za-zअ-ह][A-Za-zअ-ौ़्]*)/g
   ];
-  patterns.forEach(rx=>{let m;while((m=rx.exec(text))&&result.length<6){if(!result.includes(m[1]))result.push(m[1]);}});
-  if(!result.length)result.push('मुख्य पात्र');
-  return result;
+  patterns.forEach(rx=>{
+    let m;
+    while((m=rx.exec(text)) && names.length<5){
+      if(!names.includes(m[1])) names.push(m[1]);
+    }
+  });
+  return names.length ? names : ['मुख्य पात्र'];
 }
+
 function showCharacters(chars){
-  $('cartoonCharacters').innerHTML=chars.map((x,i)=>`<div class="step"><b>👤 Character ${i+1}</b><div style="margin-top:7px;font-size:18px">${escapeHTML(x)}</div><div class="hint">Animated human • ${escapeHTML($('cartoonStyle').value)}</div></div>`).join('');
+  $('cartoonCharacters').innerHTML=chars.map((x,i)=>`
+    <div class="step">
+      <b>👤 Character ${i+1}</b>
+      <div style="font-size:18px;margin-top:6px">${esc(x)}</div>
+      <div class="hint">हर scene में character style consistent रहेगा।</div>
+    </div>
+  `).join('');
 }
+
 function showScenes(){
-  $('cartoonScenes').innerHTML=scenes.map(s=>`<div class="step"><div style="display:flex;justify-content:space-between;gap:8px"><b>🎬 Scene ${s.no}</b><span class="badge">${s.duration}s</span></div><div style="margin-top:7px"><b>Action:</b> ${escapeHTML(s.action)}</div><div style="margin-top:7px">${escapeHTML(s.text)}</div></div>`).join('');
+  $('cartoonScenes').innerHTML=scenes.map(s=>`
+    <div class="step">
+      <div style="display:flex;justify-content:space-between;gap:8px">
+        <b>🎬 Scene ${s.no}</b><span class="badge">${s.duration}s</span>
+      </div>
+      <div style="margin-top:6px"><b>Scene type:</b> ${esc(s.action)}</div>
+      <div style="margin-top:6px">${esc(s.text)}</div>
+    </div>
+  `).join('');
 }
-$('cartoonScriptFile').addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;$('cartoonScript').value=await file.text();$('cartoonStatus').className='status ok';$('cartoonStatus').textContent='✅ Script loaded: '+file.name;});
-$('cartoonMakeScenes').addEventListener('click',()=>{
-  scenes=makeScenes($('cartoonScript').value);
-  if(!scenes.length){$('cartoonStatus').className='status err';$('cartoonStatus').textContent='❌ Script upload/paste करें।';return;}
-  showCharacters(findCharacters($('cartoonScript').value));showScenes();
-  $('cartoonStatus').className='status ok';$('cartoonStatus').textContent=`✅ ${scenes.length} cartoon scenes तैयार हैं।`;
+
+$('cartoonScriptFile').addEventListener('change',async e=>{
+  const f=e.target.files?.[0];
+  if(!f)return;
+  $('cartoonScript').value=await f.text();
+  $('cartoonStatus').className='status ok';
+  $('cartoonStatus').textContent='✅ Script loaded: '+f.name;
 });
-$('cartoonClear').addEventListener('click',()=>{stopVoice();previewRun++;scenes=[];$('cartoonScript').value='';$('cartoonScriptFile').value='';$('cartoonCharacters').innerHTML='';$('cartoonScenes').innerHTML='';$('cartoonVideo').style.display='none';$('cartoonDownload').style.display='none';$('cartoonStatus').className='status';$('cartoonStatus').textContent='Script upload या paste करें।';});
-function resizeCanvas(){const r=$('cartoonRatio').value,c=$('cartoonCanvas');if(r==='9:16'){c.width=720;c.height=1280;}else if(r==='1:1'){c.width=720;c.height=720;}else{c.width=1280;c.height=720;}}
-function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
-function wrapText(ctx,text,maxWidth,maxLines){const words=String(text).split(/\s+/),lines=[];let line='';for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word;}else line=test;}if(line)lines.push(line);return lines.slice(0,maxLines);}
-function drawHuman(ctx,x,y,scale,step,style){
-  ctx.save();ctx.translate(x,y);ctx.scale(scale,scale);
-  const bounce=Math.sin(step/180)*7, walk=Math.sin(step/130)*20;
+
+$('cartoonMakeScenes').addEventListener('click',()=>{
+  stopNarration();
+  scenes=makeScenes($('cartoonScript').value);
+  if(!scenes.length){
+    $('cartoonStatus').className='status err';
+    $('cartoonStatus').textContent='❌ पहले Hindi story/script upload या paste करें।';
+    return;
+  }
+  showCharacters(findCharacters($('cartoonScript').value));
+  showScenes();
+  drawIntro();
+  $('cartoonStatus').className='status ok';
+  $('cartoonStatus').textContent=`✅ ${scenes.length} animated cartoon scenes तैयार हैं।`;
+});
+
+$('cartoonClear').addEventListener('click',()=>{
+  runId++;
+  stopNarration();
+  scenes=[];
+  $('cartoonScript').value='';
+  $('cartoonScriptFile').value='';
+  $('cartoonCharacters').innerHTML='';
+  $('cartoonScenes').innerHTML='';
+  $('cartoonVideo').style.display='none';
+  $('cartoonDownload').style.display='none';
+  drawIntro();
+  $('cartoonStatus').className='status';
+  $('cartoonStatus').textContent='Script upload या paste करें।';
+});
+
+function sizeCanvas(c){
+  const r=$('cartoonRatio').value;
+  if(r==='9:16'){c.width=720;c.height=1280;}
+  else if(r==='1:1'){c.width=720;c.height=720;}
+  else {c.width=1280;c.height=720;}
+}
+
+function roundedRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);
+  ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);
+  ctx.arcTo(x,y,x+w,y,r);
+  ctx.closePath();
+}
+
+function bg(ctx,w,h,type,t){
+  let top='#93c5fd', bottom='#dbeafe';
+  if(type==='market'){top='#fdba74';bottom='#fef3c7';}
+  if(type==='school'){top='#bfdbfe';bottom='#f8fafc';}
+  if(type==='home'){top='#c4b5fd';bottom='#fef3c7';}
+  if(type==='village'){top='#86efac';bottom='#dcfce7';}
+  if(type==='road'){top='#7dd3fc';bottom='#f1f5f9';}
+  if(type==='help'){top='#fbcfe8';bottom='#fce7f3';}
+  if(type==='happy'){top='#fde68a';bottom='#fef3c7';}
+
+  const g=ctx.createLinearGradient(0,0,0,h);
+  g.addColorStop(0,top);g.addColorStop(1,bottom);
+  ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+
+  ctx.fillStyle='rgba(255,255,255,.78)';
+  for(let i=0;i<4;i++){
+    const x=((i*280)+(t*.018))%(w+180)-100;
+    ctx.beginPath();ctx.arc(x,90+(i%2)*40,35,0,Math.PI*2);ctx.arc(x+35,92+(i%2)*40,45,0,Math.PI*2);ctx.arc(x+75,92+(i%2)*40,32,0,Math.PI*2);ctx.fill();
+  }
+
+  if(type==='market'){
+    ctx.fillStyle='#fff';roundedRect(ctx,w*.07,h*.48,w*.25,h*.32,18);ctx.fill();
+    ctx.fillStyle='#ef4444';ctx.fillRect(w*.07,h*.48,w*.25,42);
+    ctx.fillStyle='#16a34a';ctx.font='bold 26px Arial';ctx.textAlign='center';ctx.fillText('दुकान',w*.195,h*.68);
+  } else if(type==='school'){
+    ctx.fillStyle='#fff';roundedRect(ctx,w*.58,h*.34,w*.3,h*.45,18);ctx.fill();
+    ctx.fillStyle='#2563eb';ctx.fillRect(w*.58,h*.34,w*.3,62);
+    ctx.fillStyle='#1e3a8a';ctx.font='bold 30px Arial';ctx.textAlign='center';ctx.fillText('विद्यालय',w*.73,h*.44);
+  } else if(type==='home'){
+    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.moveTo(w*.64,h*.43);ctx.lineTo(w*.8,h*.22);ctx.lineTo(w*.96,h*.43);ctx.closePath();ctx.fill();
+    ctx.fillStyle='#fff';roundedRect(ctx,w*.67,h*.42,w*.26,h*.33,10);ctx.fill();
+    ctx.fillStyle='#7c3aed';ctx.fillRect(w*.78,h*.57,42,88);
+  } else if(type==='village'){
+    ctx.fillStyle='#16a34a';ctx.fillRect(0,h*.76,w,h*.24);
+    for(let i=0;i<5;i++){
+      const x=70+i*210;
+      ctx.fillStyle='#92400e';ctx.fillRect(x,h*.42,22,h*.34);
+      ctx.fillStyle='#15803d';ctx.beginPath();ctx.arc(x+11,h*.37,70,0,Math.PI*2);ctx.fill();
+    }
+  } else if(type==='road'){
+    ctx.fillStyle='#64748b';ctx.beginPath();ctx.moveTo(w*.38,h);ctx.lineTo(w*.62,h);ctx.lineTo(w*.56,h*.55);ctx.lineTo(w*.44,h*.55);ctx.closePath();ctx.fill();
+    ctx.strokeStyle='#f8fafc';ctx.lineWidth=8;ctx.setLineDash([28,28]);ctx.beginPath();ctx.moveTo(w/2,h*.58);ctx.lineTo(w/2,h);ctx.stroke();ctx.setLineDash([]);
+  } else {
+    ctx.fillStyle='#86efac';ctx.fillRect(0,h*.75,w,h*.25);
+  }
+}
+
+function drawCharacter(ctx,x,y,scale,opts={}){
+  const moving=Math.sin(opts.t/260)*12;
+  const talking=opts.talking && Math.floor(opts.t/150)%2===0;
+  ctx.save();ctx.translate(x+moving,y);ctx.scale(scale,scale);
+
   // shadow
-  ctx.fillStyle='rgba(0,0,0,.22)';ctx.beginPath();ctx.ellipse(0,150,72,18,0,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='rgba(15,23,42,.20)';
+  ctx.beginPath();ctx.ellipse(0,150,82,20,0,0,Math.PI*2);ctx.fill();
+
   // legs
-  ctx.strokeStyle='#172554';ctx.lineWidth=18;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-22,95);ctx.lineTo(-35+walk/4,145);ctx.moveTo(22,95);ctx.lineTo(35-walk/4,145);ctx.stroke();
-  // shoes
-  ctx.fillStyle='#111827';ctx.beginPath();ctx.ellipse(-40+walk/4,150,28,12,0,0,Math.PI*2);ctx.ellipse(40-walk/4,150,28,12,0,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='#1f2937';ctx.lineWidth=16;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(-24,105);ctx.lineTo(-32,155);ctx.moveTo(24,105);ctx.lineTo(32,155);ctx.stroke();
+
   // body
-  ctx.fillStyle=style==='indian'?'#f97316':style==='3d'?'#7c3aed':'#2563eb';roundRect(ctx,-52,0,104,105,25);ctx.fill();
+  ctx.fillStyle=opts.shirt||'#2563eb';
+  roundedRect(ctx,-60,0,120,115,28);ctx.fill();
+
   // arms
-  ctx.strokeStyle='#f2b27d';ctx.lineWidth=18;ctx.beginPath();ctx.moveTo(-48,22);ctx.lineTo(-82,70+walk/4);ctx.moveTo(48,22);ctx.lineTo(82,70-walk/4);ctx.stroke();
-  // hands
-  ctx.fillStyle='#f2b27d';ctx.beginPath();ctx.arc(-84,73+walk/4,12,0,Math.PI*2);ctx.arc(84,73-walk/4,12,0,Math.PI*2);ctx.fill();
-  // neck + head
-  ctx.fillStyle='#f2b27d';ctx.fillRect(-14,-8,28,18);ctx.beginPath();ctx.arc(0,-55+bounce,52,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='#f4b183';ctx.lineWidth=15;
+  ctx.beginPath();
+  ctx.moveTo(-54,25);ctx.lineTo(-92,70+moving);
+  ctx.moveTo(54,25);ctx.lineTo(92,70-moving);
+  ctx.stroke();
+
+  // neck
+  ctx.fillStyle='#f4b183';ctx.fillRect(-13,-22,26,30);
+
+  // head
+  ctx.fillStyle='#f4b183';ctx.beginPath();ctx.arc(0,-75,58,0,Math.PI*2);ctx.fill();
+
   // hair
-  ctx.fillStyle='#3f2a20';ctx.beginPath();ctx.arc(0,-70+bounce,50,Math.PI,Math.PI*2);ctx.fill();ctx.fillRect(-48,-70+bounce,96,18);
+  ctx.fillStyle=opts.hair||'#3f2a1d';
+  ctx.beginPath();ctx.arc(0,-105,53,Math.PI,Math.PI*2);ctx.fill();
+  ctx.fillRect(-52,-104,104,25);
+
   // eyes
-  ctx.fillStyle='#111827';ctx.beginPath();ctx.arc(-18,-56+bounce,5,0,Math.PI*2);ctx.arc(18,-56+bounce,5,0,Math.PI*2);ctx.fill();
-  // smile/mouth talking
-  ctx.strokeStyle='#7f1d1d';ctx.lineWidth=4;ctx.beginPath();ctx.arc(0,-40+bounce,13,0.1,Math.PI-0.1);ctx.stroke();
+  ctx.fillStyle='#111827';
+  ctx.beginPath();ctx.arc(-20,-80,6,0,Math.PI*2);ctx.arc(20,-80,6,0,Math.PI*2);ctx.fill();
+
+  // mouth
+  ctx.strokeStyle='#7f1d1d';ctx.lineWidth=5;
+  ctx.beginPath();
+  if(talking){ctx.ellipse(0,-51,12,8,0,0,Math.PI*2);}
+  else {ctx.arc(0,-53,13,0,Math.PI);}
+  ctx.stroke();
+
   ctx.restore();
 }
-function drawSpeechBubble(ctx,x,y,text,w){
-  const maxW=Math.min(w*.48,420), pad=18;ctx.font=`${Math.min(25,w*.023)}px Arial`;const lines=wrapText(ctx,text,maxW-pad*2,5);const bh=lines.length*34+pad*2,bw=maxW;
-  roundRect(ctx,x,y,bw,bh,20);ctx.fillStyle='white';ctx.fill();ctx.strokeStyle='#cbd5e1';ctx.lineWidth=3;ctx.stroke();
-  ctx.fillStyle='white';ctx.beginPath();ctx.moveTo(x+45,y+bh);ctx.lineTo(x+25,y+bh+30);ctx.lineTo(x+80,y+bh-3);ctx.closePath();ctx.fill();ctx.stroke();
-  ctx.fillStyle='#111827';lines.forEach((line,i)=>ctx.fillText(line,x+pad+ctx.measureText(line)/2,y+pad+24+i*34));
+
+function bubble(ctx,x,y,w,text){
+  const maxW=w-40, words=text.split(/\s+/), lines=[];let line='';
+  ctx.font='bold 25px Arial';
+  words.forEach(word=>{
+    const test=line?line+' '+word:word;
+    if(ctx.measureText(test).width>maxW && line){lines.push(line);line=word;}
+    else line=test;
+  });
+  if(line)lines.push(line);
+  const lh=34, h=lines.length*lh+42;
+  const bx=x-w/2, by=y-h;
+  ctx.fillStyle='rgba(255,255,255,.96)';
+  roundedRect(ctx,bx,by,w,h,22);ctx.fill();
+  ctx.strokeStyle='#334155';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.moveTo(x-18,y-h+2);ctx.lineTo(x+10,y-h+2);ctx.lineTo(x,y+18);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#111827';ctx.textAlign='center';ctx.textBaseline='middle';
+  lines.forEach((ln,i)=>ctx.fillText(ln,x,by+28+i*lh));
 }
-function drawScene(ctx,scene,index,total,elapsed){
-  const w=ctx.canvas.width,h=ctx.canvas.height,progress=Math.min(1,elapsed/(scene.duration*1000));ctx.clearRect(0,0,w,h);
-  const g=ctx.createLinearGradient(0,0,w,h);g.addColorStop(0,'#bfdbfe');g.addColorStop(1,'#ddd6fe');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
-  // simple cartoon environment
-  ctx.fillStyle='#86efac';ctx.fillRect(0,h*.72,w,h*.28);ctx.fillStyle='#65a30d';for(let i=0;i<7;i++){ctx.beginPath();ctx.arc(70+i*w/7,h*.69,45,0,Math.PI*2);ctx.fill();}
-  ctx.fillStyle='#fef3c7';roundRect(ctx,w*.05,h*.08,w*.25,h*.12,18);ctx.fill();ctx.fillStyle='#334155';ctx.font=`bold ${Math.min(34,w*.03)}px Arial`;ctx.textAlign='center';ctx.fillText('Scene '+scene.no,w*.175,h*.145);
-  const moving=Math.sin(elapsed/300)*35;drawHuman(ctx,w*.34+moving,h*.53,Math.min(w,h)/600,elapsed,$('cartoonStyle').value);
-  drawSpeechBubble(ctx,w*.52,h*.17,scene.text,w);
-  ctx.fillStyle='#334155';ctx.font=`${Math.min(22,w*.02)}px Arial`;ctx.fillText(`${index+1} / ${total} • ${$('cartoonStyle').value}`,w/2,h-25);
-  ctx.fillStyle='#2563eb';ctx.fillRect(0,h-8,w*((index+progress)/total),8);
+
+function wrapText(ctx,text,maxWidth,maxLines){
+  const words=text.split(/\s+/), lines=[];let line='';
+  words.forEach(word=>{
+    const test=line?line+' '+word:word;
+    if(ctx.measureText(test).width>maxWidth && line){lines.push(line);line=word;}
+    else line=test;
+  });
+  if(line)lines.push(line);
+  return lines.slice(0,maxLines);
 }
-function pickHindiVoice(){
-  if(!('speechSynthesis' in window))return null;const voices=speechSynthesis.getVoices()||[];const hi=voices.filter(v=>/^hi(?:-|_)/i.test(v.lang)||/hindi/i.test(v.name));if(!hi.length)return voices.find(v=>/hi/i.test(v.lang))||null;const wanted=$('cartoonVoice').value;if(wanted==='male')return hi.find(v=>/male|hemant|ravi/i.test(v.name))||hi[0];if(wanted==='female')return hi.find(v=>/female|kalpana|swara|heera/i.test(v.name))||hi[0];return hi[0];}
-function speakScene(scene){
-  if(!('speechSynthesis' in window)){ $('cartoonVoiceStatus').className='status err';$('cartoonVoiceStatus').textContent='❌ इस browser में Hindi Speech उपलब्ध नहीं है। Chrome/Edge इस्तेमाल करें।';return; }
-  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(scene.text);u.lang='hi-IN';u.rate=parseFloat($('cartoonRate').value)||.9;u.pitch=1;const v=pickHindiVoice();if(v)u.voice=v;u.onstart=()=>{$('cartoonVoiceStatus').className='status ok';$('cartoonVoiceStatus').textContent='🔊 Hindi voice: '+(v?v.name:'hi-IN default');};u.onerror=()=>{$('cartoonVoiceStatus').className='status err';$('cartoonVoiceStatus').textContent='❌ Hindi voice start नहीं हुई। Browser voice settings check करें।';};speechSynthesis.speak(u);
+
+function drawFrame(ctx,scene,index,total,elapsed,talking){
+  const w=ctx.canvas.width,h=ctx.canvas.height;
+  ctx.clearRect(0,0,w,h);
+  bg(ctx,w,h,scene.action,elapsed);
+
+  // title strip
+  ctx.fillStyle='rgba(15,23,42,.78)';
+  roundedRect(ctx,22,22,w-44,58,16);ctx.fill();
+  ctx.fillStyle='#fff';ctx.font=`bold ${Math.max(24,w*.026)}px Arial`;
+  ctx.textAlign='left';ctx.textBaseline='middle';
+  ctx.fillText('कहानी • Scene '+scene.no,45,51);
+
+  const sx=w*.5, sy=h*.57;
+  drawCharacter(ctx,sx,sy,Math.min(w,h)/720,{t:elapsed,talking,shirt:scene.action==='help'?'#16a34a':'#2563eb'});
+
+  bubble(ctx,w*.70,h*.40,w*.43,scene.text);
+
+  // subtitles
+  ctx.fillStyle='rgba(15,23,42,.84)';
+  roundedRect(ctx,40,h-112,w-80,72,18);ctx.fill();
+  ctx.fillStyle='#fff';ctx.font=`${Math.max(21,w*.022)}px Arial`;
+  const lines=wrapText(ctx,scene.text,w-130,2);
+  lines.forEach((ln,i)=>ctx.fillText(ln,w/2,h-84+i*29));
+
+  // progress
+  ctx.fillStyle='rgba(255,255,255,.35)';ctx.fillRect(0,h-7,w,7);
+  ctx.fillStyle='#22c55e';ctx.fillRect(0,h-7,w*((index+Math.min(1,elapsed/(scene.duration*1000)))/total),7);
 }
-function stopVoice(){if('speechSynthesis' in window)speechSynthesis.cancel();$('cartoonVoiceStatus').textContent='🔇 Voice stopped.';}
-function previewVideo(){
-  if(!scenes.length){$('cartoonStatus').className='status err';$('cartoonStatus').textContent='❌ पहले Scenes बनाएं।';return;}
-  resizeCanvas();stopVoice();if(raf)cancelAnimationFrame(raf);const run=++previewRun;let index=0,sceneStart=performance.now(),voiceStarted=false;
-  $('cartoonStatus').className='status ok';$('cartoonStatus').textContent='▶️ Cartoon preview + Hindi narration चल रहा है...';
-  const loop=now=>{if(run!==previewRun)return;const elapsed=now-sceneStart,ctx=$('cartoonCanvas').getContext('2d');drawScene(ctx,scenes[index],index,scenes.length,elapsed);$('cartoonEmoji').textContent='🧑‍🎨';$('cartoonTitle').textContent='Scene '+scenes[index].no;$('cartoonText').textContent=scenes[index].text;if(!voiceStarted){voiceStarted=true;speakScene(scenes[index]);}
-    if(elapsed>=scenes[index].duration*1000){index++;if(index>=scenes.length){stopVoice();$('cartoonStatus').textContent='✅ Preview complete.';return;}sceneStart=now;voiceStarted=false;}raf=requestAnimationFrame(loop);};raf=requestAnimationFrame(loop);
+
+function drawIntro(){
+  const c=$('cartoonPreviewCanvas');sizeCanvas(c);
+  const ctx=c.getContext('2d'),w=c.width,h=c.height;
+  bg(ctx,w,h,'story',0);
+  drawCharacter(ctx,w*.5,h*.65,Math.min(w,h)/720,{t:0,talking:false});
+  ctx.fillStyle='rgba(15,23,42,.78)';roundedRect(ctx,w*.18,h*.08,w*.64,110,22);ctx.fill();
+  ctx.fillStyle='#fff';ctx.textAlign='center';ctx.font=`bold ${Math.max(28,w*.04)}px Arial`;
+  ctx.fillText('🎬 Cartoon Story Preview',w/2,h*.16);
+  ctx.font=`${Math.max(20,w*.022)}px Arial`;ctx.fillText('Script से scenes बनाएं और Preview + Hindi Voice दबाएं',w/2,h*.23);
 }
-function createVideo(){
-  if(!scenes.length){$('cartoonStatus').className='status err';$('cartoonStatus').textContent='❌ पहले Scenes बनाएं।';return;}
-  resizeCanvas();const canvas=$('cartoonCanvas');if(!canvas.captureStream||!window.MediaRecorder){$('cartoonStatus').className='status err';$('cartoonStatus').textContent='❌ Chrome/Edge में खोलें।';return;}
-  stopVoice();if(raf)cancelAnimationFrame(raf);const stream=canvas.captureStream(30);const types=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'];const mime=types.find(x=>MediaRecorder.isTypeSupported(x))||'';let recorder;try{recorder=new MediaRecorder(stream,mime?{mimeType:mime}:{});}catch(e){$('cartoonStatus').className='status err';$('cartoonStatus').textContent='❌ Video recorder error: '+e.message;return;}
-  const chunks=[];recorder.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data);};recorder.onstop=()=>{const blob=new Blob(chunks,{type:recorder.mimeType||'video/webm'});if(renderURL)URL.revokeObjectURL(renderURL);renderURL=URL.createObjectURL(blob);$('cartoonVideo').src=renderURL;$('cartoonVideo').style.display='block';$('cartoonDownload').href=renderURL;$('cartoonDownload').download='cartoon-video-'+Date.now()+'.webm';$('cartoonDownload').style.display='inline-block';$('cartoonStatus').className='status ok';$('cartoonStatus').textContent='✅ Cartoon video तैयार है। Download Video दबाएँ।';stream.getTracks().forEach(t=>t.stop());};
-  recorder.start(250);let index=0,sceneStart=performance.now();$('cartoonStatus').className='status ok';$('cartoonStatus').textContent='🎥 Cartoon video बनाया जा रहा है...';
-  const loop=now=>{const elapsed=now-sceneStart,ctx=canvas.getContext('2d');drawScene(ctx,scenes[index],index,scenes.length,elapsed);$('cartoonEmoji').textContent='🧑‍🎨';$('cartoonTitle').textContent='Scene '+scenes[index].no;$('cartoonText').textContent=scenes[index].text;if(elapsed>=scenes[index].duration*1000){index++;if(index>=scenes.length){recorder.stop();return;}sceneStart=now;}raf=requestAnimationFrame(loop);};raf=requestAnimationFrame(loop);
+
+function chooseHindiVoice(){
+  const voices=speechSynthesis.getVoices().filter(v=>
+    /^hi(-|_)/i.test(v.lang) || /hindi/i.test(v.name)
+  );
+  const pref=$('cartoonVoice').value;
+  if(!voices.length)return null;
+  if(pref==='female'){
+    return voices.find(v=>/female|woman|heera|kalpana|swara/i.test(v.name))||voices[0];
+  }
+  if(pref==='male'){
+    return voices.find(v=>/male|man|ravi|hemant/i.test(v.name))||voices[0];
+  }
+  return voices[0];
 }
-$('cartoonPreviewBtn').addEventListener('click',previewVideo);$('cartoonStopVoiceBtn').addEventListener('click',()=>{previewRun++;if(raf)cancelAnimationFrame(raf);stopVoice();});$('cartoonRenderBtn').addEventListener('click',createVideo);
-if('speechSynthesis' in window)speechSynthesis.onvoiceschanged=()=>{const v=pickHindiVoice();if(v)$('cartoonVoiceStatus').textContent='🗣️ Hindi voice ready: '+v.name;};
+
+function speak(text,token,onEnd){
+  if(!('speechSynthesis' in window)){onEnd&&onEnd();return;}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='hi-IN';
+  u.rate=parseFloat($('cartoonRate').value)||0.88;
+  u.pitch=1;
+  const v=chooseHindiVoice();if(v)u.voice=v;
+  u.onstart=()=>{speaking=true;};
+  u.onend=()=>{if(token===runId){speaking=false;onEnd&&onEnd();}};
+  u.onerror=()=>{if(token===runId){speaking=false;onEnd&&onEnd();}};
+  speechSynthesis.speak(u);
+}
+
+function stopNarration(){
+  runId++;
+  speaking=false;
+  if('speechSynthesis' in window)speechSynthesis.cancel();
+  if(raf)cancelAnimationFrame(raf);
+}
+
+function preview(){
+  if(!scenes.length){
+    $('cartoonStatus').className='status err';
+    $('cartoonStatus').textContent='❌ पहले Animated Scenes बनाएं।';
+    return;
+  }
+  stopNarration();
+  const token=runId, c=$('cartoonPreviewCanvas');sizeCanvas(c);
+  let idx=0,start=performance.now();
+  $('cartoonStatus').className='status ok';
+  $('cartoonStatus').textContent='▶️ Cartoon animation + Hindi narration चल रही है...';
+
+  const playScene=()=>{
+    if(token!==runId || idx>=scenes.length)return;
+    start=performance.now();
+    speak(scenes[idx].text,token,()=>{
+      if(token!==runId)return;
+      idx++;
+      if(idx<scenes.length)playScene();
+      else $('cartoonStatus').textContent='✅ Cartoon story preview complete.';
+    });
+  };
+
+  const loop=now=>{
+    if(token!==runId)return;
+    const elapsed=now-start;
+    drawFrame(c.getContext('2d'),scenes[idx],idx,scenes.length,elapsed,speaking);
+    raf=requestAnimationFrame(loop);
+  };
+  raf=requestAnimationFrame(loop);
+  playScene();
+}
+
+function renderVideo(){
+  if(!scenes.length){
+    $('cartoonStatus').className='status err';
+    $('cartoonStatus').textContent='❌ पहले Animated Scenes बनाएं।';
+    return;
+  }
+  const c=$('cartoonCanvas');sizeCanvas(c);
+  if(!c.captureStream||!window.MediaRecorder){
+    $('cartoonStatus').className='status err';
+    $('cartoonStatus').textContent='❌ Chrome/Edge में Video recording supported नहीं है।';
+    return;
+  }
+  stopNarration();
+  const stream=c.captureStream(30);
+  const mime=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'].find(x=>MediaRecorder.isTypeSupported(x))||'';
+  let rec;
+  try{rec=new MediaRecorder(stream,mime?{mimeType:mime}:{})}
+  catch(e){
+    $('cartoonStatus').className='status err';
+    $('cartoonStatus').textContent='❌ Recorder error: '+e.message;
+    return;
+  }
+  const chunks=[];
+  rec.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data);};
+  rec.onstop=()=>{
+    const blob=new Blob(chunks,{type:rec.mimeType||'video/webm'});
+    if(renderURL)URL.revokeObjectURL(renderURL);
+    renderURL=URL.createObjectURL(blob);
+    $('cartoonVideo').src=renderURL;
+    $('cartoonVideo').style.display='block';
+    $('cartoonDownload').href=renderURL;
+    $('cartoonDownload').download='great-india-cartoon-story-'+Date.now()+'.webm';
+    $('cartoonDownload').style.display='inline-block';
+    $('cartoonStatus').className='status ok';
+    $('cartoonStatus').textContent='✅ Cartoon video तैयार है। Download Video दबाएं।';
+    stream.getTracks().forEach(t=>t.stop());
+  };
+
+  rec.start(250);
+  let idx=0,start=performance.now();
+  $('cartoonStatus').className='status ok';
+  $('cartoonStatus').textContent='🎥 Cartoon video render हो रहा है...';
+
+  const loop=now=>{
+    const elapsed=now-start;
+    drawFrame(c.getContext('2d'),scenes[idx],idx,scenes.length,elapsed,false);
+    if(elapsed>=scenes[idx].duration*1000){
+      idx++;
+      if(idx>=scenes.length){rec.stop();return;}
+      start=now;
+    }
+    raf=requestAnimationFrame(loop);
+  };
+  raf=requestAnimationFrame(loop);
+}
+
+$('cartoonPreviewBtn').addEventListener('click',preview);
+$('cartoonStopVoiceBtn').addEventListener('click',()=>{
+  stopNarration();
+  $('cartoonStatus').textContent='⏹️ Preview stopped.';
+});
+$('cartoonRenderBtn').addEventListener('click',renderVideo);
+
+if('speechSynthesis' in window){
+  speechSynthesis.onvoiceschanged=()=>{};
+}
+drawIntro();
+
 })();
 </script>
 <!-- =============== END CARTOON BUILDER =============== -->
