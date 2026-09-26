@@ -1,0 +1,200 @@
+<!-- VIDEO SOURCE SECTION -->
+<section id="hcVideoSource" style="
+  margin:25px 0;
+  padding:20px;
+  background:#ffffff;
+  border:1px solid #ddd;
+  border-radius:18px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+">
+
+  <h2 style="margin-top:0;">
+    🎬 Video से Script निकालें
+  </h2>
+
+  <p style="color:#666;">
+    Video upload करें या direct video URL डालें। 
+    फिर video की Hindi आवाज़ से script निकालकर Cartoon Builder में भेजें।
+  </p>
+
+  <!-- VIDEO URL -->
+  <label style="font-weight:bold;display:block;margin-bottom:6px;">
+    🔗 Video URL
+  </label>
+
+  <input
+    id="hcSourceUrl"
+    type="url"
+    placeholder="https://example.com/video.mp4"
+    style="
+      width:100%;
+      box-sizing:border-box;
+      padding:12px;
+      border:1px solid #ccc;
+      border-radius:10px;
+      margin-bottom:12px;
+    "
+  >
+
+  <div style="
+    text-align:center;
+    color:#888;
+    margin:10px 0;
+  ">
+    — OR —
+  </div>
+
+  <!-- VIDEO UPLOAD -->
+  <label style="font-weight:bold;display:block;margin-bottom:6px;">
+    📁 Video Upload
+  </label>
+
+  <input
+    id="hcSourceFile"
+    type="file"
+    accept="video/*"
+    style="
+      width:100%;
+      box-sizing:border-box;
+      padding:10px;
+      border:1px solid #ccc;
+      border-radius:10px;
+    "
+  >
+
+  <!-- BUTTONS -->
+  <div style="
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+  ">
+
+    <button
+      id="hcLoadSource"
+      type="button"
+      style="
+        padding:12px 18px;
+        border:0;
+        border-radius:10px;
+        cursor:pointer;
+      "
+    >
+      ▶️ Load Video
+    </button>
+
+    <button
+      id="hcExtractTranscript"
+      type="button"
+      style="
+        padding:12px 18px;
+        border:0;
+        border-radius:10px;
+        cursor:pointer;
+      "
+    >
+      📝 Extract Hindi Script
+    </button>
+
+    <button
+      id="hcUseSource"
+      type="button"
+      style="
+        padding:12px 18px;
+        border:0;
+        border-radius:10px;
+        cursor:pointer;
+      "
+    >
+      🎨 Cartoon में लगाएँ
+    </button>
+
+  </div>
+
+  <!-- STATUS -->
+  <div
+    id="hcSourceStatus"
+    style="
+      margin-top:15px;
+      padding:12px;
+      border-radius:10px;
+      background:#f5f5f5;
+    "
+  >
+    Video URL डालें या video upload करें।
+  </div>
+
+  <!-- VIDEO PLAYER -->
+  <video
+    id="hcSourcePlayer"
+    controls
+    playsinline
+    style="
+      width:100%;
+      max-height:420px;
+      margin-top:15px;
+      border-radius:12px;
+      background:#111;
+      display:none;
+    "
+  ></video>
+
+  <!-- SCRIPT -->
+  <label
+    style="
+      display:block;
+      font-weight:bold;
+      margin-top:18px;
+      margin-bottom:6px;
+    "
+  >
+    📝 Extracted Hindi Script
+  </label>
+
+  <textarea
+    id="hcSourceTranscript"
+    rows="8"
+    placeholder="Video की Hindi speech यहाँ दिखाई देगी..."
+    style="
+      width:100%;
+      box-sizing:border-box;
+      padding:12px;
+      border:1px solid #ccc;
+      border-radius:10px;
+    "
+  ></textarea>
+
+  <!-- SOURCE AUDIO -->
+  <label
+    style="
+      display:block;
+      font-weight:bold;
+      margin-top:18px;
+      margin-bottom:6px;
+    "
+  >
+    🔊 Source Sound
+  </label>
+
+  <audio
+    id="hcSourceAudio"
+    controls
+    style="
+      width:100%;
+      display:none;
+    "
+  ></audio>
+
+  <div
+    style="
+      margin-top:12px;
+      font-size:13px;
+      color:#666;
+    "
+  >
+    ⚠️ Direct MP4/WebM video URL या uploaded video इस्तेमाल करें।
+    YouTube/Instagram/Facebook page URL को browser सीधे extract नहीं करता।
+  </div>
+
+</section>
+<!-- END VIDEO SOURCE SECTION -->
